@@ -32,9 +32,9 @@
 ## 应用预览
 
 <p align="center">
-  <a href="../../releases/latest/download/HideMyEmail-Generator-macOS-Apple-Silicon.dmg"><strong>下载 Apple 芯片版（.dmg）</strong></a>
+  <a href="https://github.com/rtunazzz/hidemyemail-generator/releases/latest/download/HideMyEmail-Generator-macOS-Apple-Silicon.dmg"><strong>下载 Apple 芯片版（.dmg）</strong></a>
   ·
-  <a href="../../releases/latest/download/HideMyEmail-Generator-macOS-Intel.dmg"><strong>下载 Intel 版（.dmg）</strong></a>
+  <a href="https://github.com/rtunazzz/hidemyemail-generator/releases/latest/download/HideMyEmail-Generator-macOS-Intel.dmg"><strong>下载 Intel 版（.dmg）</strong></a>
 </p>
 
 <p align="center">
@@ -94,13 +94,13 @@
 
 ### 下载预构建二进制
 
-从[最新发行版](../../releases/latest)下载独立二进制文件，无需安装 Python 或 `uv`。
+从[上游最新发行版](https://github.com/rtunazzz/hidemyemail-generator/releases/latest)下载独立二进制文件，无需安装 Python 或 `uv`。
 
-- **Windows：** 下载 `hidemyemail-windows.exe`。双击打开交互式菜单，或在终端中带参数运行以使用命令行（`hidemyemail-windows.exe --help`）。
+- **Windows：** 从本 fork 的 [v2.1.0-win Release](../../releases/tag/v2.1.0-win) 下载 `hidemyemail-windows.exe`（`首次使用.bat` 也可自动下载），放到 `contrib/windows/`。双击打开交互式菜单，或在终端中带参数运行以使用命令行（`hidemyemail-windows.exe --help`）。
 - **macOS 应用：** M 系列 Mac 下载
-  [Apple 芯片版 DMG](../../releases/latest/download/HideMyEmail-Generator-macOS-Apple-Silicon.dmg)，
+  [Apple 芯片版 DMG](https://github.com/rtunazzz/hidemyemail-generator/releases/latest/download/HideMyEmail-Generator-macOS-Apple-Silicon.dmg)，
   Intel Mac 下载
-  [Intel 版 DMG](../../releases/latest/download/HideMyEmail-Generator-macOS-Intel.dmg)。
+  [Intel 版 DMG](https://github.com/rtunazzz/hidemyemail-generator/releases/latest/download/HideMyEmail-Generator-macOS-Intel.dmg)。
   首次启动时，请在访达中右键点击应用并选择**打开**。
 - **macOS 命令行：** Apple 芯片下载 `hidemyemail-macos`，Intel 下载
   `hidemyemail-macos-x86_64`。执行 `chmod +x` 后从终端运行。
@@ -214,7 +214,7 @@ HIDEMYEMAIL_REGION=china
 
 ### 快速开始（EXE 模式）
 
-1. 从 Releases 下载 `hidemyemail-windows.exe`，放到 `contrib/windows/`
+1. 下载 `hidemyemail-windows.exe`（本 fork 的 [v2.1.0-win Release](../../releases/tag/v2.1.0-win)，或让 `首次使用.bat` 自动下载），放到 `contrib/windows/`
 2. 用 **Get cookies.txt LOCALLY** 导出 cookie（安装与用法见下）；保存为 **`contrib/windows/cookies.txt`**（与 bat 同级，向导默认查找此处），必须包含 `X-APPLE-WEBAUTH-TOKEN`、`X-APPLE-WEBAUTH-USER`、`X-APPLE-DS-WEB-SESSION-TOKEN`
 3. 双击 `首次使用.bat`（`setup.bat`）完成配置，之后双击 `启动刷号.bat`（`start-burst.bat`）开始
 

@@ -23,8 +23,8 @@ macOS 用法与上游完全一致，见仓库根目录的 README。
 
 适合大多数用户，1 分钟完成：
 
-1. 到上游 Releases 下载 `hidemyemail-windows.exe`（v2.1.0 已测试通过）：
-   `https://github.com/rtunazzz/hidemyemail-generator/releases`
+1. 下载 `hidemyemail-windows.exe`：本 fork 的 [v2.1.0-win Release](https://github.com/VioletYu915/hidemyemail-generator/releases/tag/v2.1.0-win)（镜像自上游 v2.1.0；若文件缺失，`首次使用.bat` 会自动下载并校验 SHA256）
+   `SHA256: D1043F52FC5913B7FEC9E075E9ABE7034626F7BEF56F0E77BC10DB91A6B259DF`
 2. 把 exe 放到本目录（`contrib/windows/`）
 3. 用浏览器扩展导出 cookie，保存为 `cookies.txt`（见下一节）
 4. 双击 **`首次使用.bat`**，按提示选择 1（EXE）并完成配置
@@ -89,7 +89,7 @@ macOS 用法与上游完全一致，见仓库根目录的 README。
 | `convert-cookies.ps1` | 把 Netscape 格式 cookie 转成 header / BASE64 |
 | `extensions/` | 浏览器扩展安装包（Get cookies.txt LOCALLY v0.7.2，Chrome/Firefox） |
 
-> `config.json`、`cookies.txt`、`inbox_config.json`、`*.db`、`logs/`、`exports/` 均为运行时生成，已被 `.gitignore` 忽略。
+> `config.json`、`cookies.txt`、`inbox_config.json`、`hidemyemail-windows.exe`（首次向导自动下载）、`*.db`、`logs/`、`exports/` 均为运行时生成，已被 `.gitignore` 忽略。
 
 ---
 

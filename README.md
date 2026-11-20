@@ -32,9 +32,9 @@
 ## App Preview
 
 <p align="center">
-  <a href="../../releases/latest/download/HideMyEmail-Generator-macOS-Apple-Silicon.dmg"><strong>Download for Apple Silicon (.dmg)</strong></a>
+  <a href="https://github.com/rtunazzz/hidemyemail-generator/releases/latest/download/HideMyEmail-Generator-macOS-Apple-Silicon.dmg"><strong>Download for Apple Silicon (.dmg)</strong></a>
   ·
-  <a href="../../releases/latest/download/HideMyEmail-Generator-macOS-Intel.dmg"><strong>Download for Intel (.dmg)</strong></a>
+  <a href="https://github.com/rtunazzz/hidemyemail-generator/releases/latest/download/HideMyEmail-Generator-macOS-Intel.dmg"><strong>Download for Intel (.dmg)</strong></a>
 </p>
 
 <p align="center">
@@ -119,13 +119,13 @@ Alongside the basics it provides:
 
 ### Download a prebuilt binary
 
-Grab a standalone binary from the [latest release](../../releases/latest) — no Python or `uv` required.
+Grab a standalone binary from the [upstream latest release](https://github.com/rtunazzz/hidemyemail-generator/releases/latest) — no Python or `uv` required.
 
-- **Windows:** download `hidemyemail-windows.exe`. Double-click it to open the interactive menu, or run it from a terminal with arguments for CLI usage (`hidemyemail-windows.exe --help`).
+- **Windows:** download `hidemyemail-windows.exe` from this fork's [v2.1.0-win release](../../releases/tag/v2.1.0-win) — the toolkit's `首次使用.bat` can also fetch it automatically — then place it in `contrib/windows/`. Double-click it to open the interactive menu, or run it from a terminal with arguments for CLI usage (`hidemyemail-windows.exe --help`).
 - **macOS app:** download the
-  [Apple Silicon DMG](../../releases/latest/download/HideMyEmail-Generator-macOS-Apple-Silicon.dmg)
+  [Apple Silicon DMG](https://github.com/rtunazzz/hidemyemail-generator/releases/latest/download/HideMyEmail-Generator-macOS-Apple-Silicon.dmg)
   for M-series Macs or the
-  [Intel DMG](../../releases/latest/download/HideMyEmail-Generator-macOS-Intel.dmg)
+  [Intel DMG](https://github.com/rtunazzz/hidemyemail-generator/releases/latest/download/HideMyEmail-Generator-macOS-Intel.dmg)
   for Intel Macs, then right-click the app and choose **Open** the first time.
 - **macOS CLI:** download `hidemyemail-macos` for Apple Silicon or `hidemyemail-macos-x86_64` for Intel. Make it executable with `chmod +x`, then run it from Terminal.
 - **Android app:** build the source under [`android/`](android/).
@@ -285,7 +285,7 @@ This fork adds a Windows toolkit in [`contrib/windows/`](contrib/windows/README.
 
 ### Quick start (EXE mode)
 
-1. Download `hidemyemail-windows.exe` from the releases and place it in `contrib/windows/`.
+1. Download `hidemyemail-windows.exe` (from [this fork's v2.1.0-win release](../../releases/tag/v2.1.0-win), or let `首次使用.bat` download it automatically) and place it in `contrib/windows/`.
 2. Capture cookies with **Get cookies.txt LOCALLY** — installation and usage are below. Save the export as **`contrib/windows/cookies.txt`** (next to the .bat files; the setup wizard looks there by default); it must include `X-APPLE-WEBAUTH-TOKEN`, `X-APPLE-WEBAUTH-USER`, and `X-APPLE-DS-WEB-SESSION-TOKEN`.
 3. Double-click `首次使用.bat` (`setup.bat`) once to configure, then `启动刷号.bat` (`start-burst.bat`) to generate.
 

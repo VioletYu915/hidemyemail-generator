@@ -48,6 +48,45 @@ if ($runMode -eq "exe") {
     $found = Get-ChildItem $PSScriptRoot -Filter "hidemyemail*.exe" -File -ErrorAction SilentlyContinue | Select-Object -First 1
     if ($found) { $candidate = $found.FullName }
   }
+
+  if (-not (Test-Path $candidate)) {
+    $dest = Join-Path $PSScriptRoot "hidemyemail-windows.exe"
+    $expected = "D1043F52FC5913B7FEC9E075E9ABE7034626F7BEF56F0E77BC10DB91A6B259DF"
+    $urls = @(
+      "https://github.com/VioletYu915/hidemyemail-generator/releases/download/v2.1.0-win/hidemyemail-windows.exe",
+      "https://github.com/rtunazzz/hidemyemail-generator/releases/download/v2.1.0/hidemyemail-windows.exe"
+    )
+    Write-Host ""
+    Write-Host "未找到 hidemyemail-windows.exe（约 15.5MB）"
+    $doDownload = Read-Host "现在自动下载吗？[Y/n]"
+    if ($doDownload -eq "" -or $doDownload -match '^[Yy]') {
+      $downloaded = $false
+      foreach ($u in $urls) {
+        try {
+          Write-Host "正在下载: $u"
+          Invoke-WebRequest -UseBasicParsing -Uri $u -OutFile $dest -TimeoutSec 300
+          $hash = (Get-FileHash $dest -Algorithm SHA256).Hash
+          if ($hash -eq $expected) {
+            $downloaded = $true
+            Write-Host "[OK] 下载完成并通过 SHA256 校验"
+            break
+          }
+          Write-Host "[WARN] 校验失败（$hash），尝试下一个来源"
+          Remove-Item $dest -Force -ErrorAction SilentlyContinue
+        }
+        catch {
+          Write-Host "[WARN] 下载失败：$($_.Exception.Message)"
+          Remove-Item $dest -Force -ErrorAction SilentlyContinue
+        }
+      }
+      if ($downloaded) { $candidate = $dest }
+      else {
+        Write-Host "[ERR] 自动下载失败，请手动下载："
+        Write-Host "      https://github.com/VioletYu915/hidemyemail-generator/releases/tag/v2.1.0-win"
+      }
+    }
+  }
+
   while (-not (Test-Path $candidate)) {
     Write-Host "[WARN] 未找到 hidemyemail-windows.exe（可放到本目录，或输入完整路径）"
     $entered = Read-Host "EXE 路径（直接回车退出）"
