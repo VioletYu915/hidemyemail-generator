@@ -215,15 +215,15 @@ HIDEMYEMAIL_REGION=china
 ### 快速开始（EXE 模式）
 
 1. 从 Releases 下载 `hidemyemail-windows.exe`，放到 `contrib/windows/`
-2. 用 **Get cookies.txt LOCALLY** 导出 cookie（安装与用法见下）；保存为 `cookies.txt`，必须包含 `X-APPLE-WEBAUTH-TOKEN`、`X-APPLE-WEBAUTH-USER`、`X-APPLE-DS-WEB-SESSION-TOKEN`
+2. 用 **Get cookies.txt LOCALLY** 导出 cookie（安装与用法见下）；保存为 **`contrib/windows/cookies.txt`**（与 bat 同级，向导默认查找此处），必须包含 `X-APPLE-WEBAUTH-TOKEN`、`X-APPLE-WEBAUTH-USER`、`X-APPLE-DS-WEB-SESSION-TOKEN`
 3. 双击 `首次使用.bat`（`setup.bat`）完成配置，之后双击 `启动刷号.bat`（`start-burst.bat`）开始
 
 ### 安装 cookie 扩展
 
 仓库根目录已附带**未打包扩展 v0.7.2**：
 
-- Chrome / Edge：`get-cookies.txt-locally_v0.7.2_chrome.zip`
-- Firefox：`get-cookies.txt-locally_v0.7.2_firefox.zip`
+- Chrome / Edge：[`contrib/windows/extensions/get-cookies.txt-locally_v0.7.2_chrome.zip`](contrib/windows/extensions/get-cookies.txt-locally_v0.7.2_chrome.zip)
+- Firefox：[`contrib/windows/extensions/get-cookies.txt-locally_v0.7.2_firefox.zip`](contrib/windows/extensions/get-cookies.txt-locally_v0.7.2_firefox.zip)
 
 **Chrome / Edge**
 
@@ -242,7 +242,7 @@ HIDEMYEMAIL_REGION=china
 
 1. 登录 `https://www.icloud.com.cn`（国区）或 `https://www.icloud.com`（国际区）
 2. 打开扩展，选择 **Export → Header string**
-3. 保存为 `cookies.txt`（单行文本）
+3. 保存为**工具包目录下的 `cookies.txt`**（即 `contrib/windows/cookies.txt`，与 bat 同级，单行文本）；若想放别处，在向导里填写路径或改 `config.json` 的 `cookie_file`
 
 ![使用 Get cookies.txt LOCALLY 导出 Header string](docs/cookies.png)
 

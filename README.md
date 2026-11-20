@@ -286,15 +286,15 @@ This fork adds a Windows toolkit in [`contrib/windows/`](contrib/windows/README.
 ### Quick start (EXE mode)
 
 1. Download `hidemyemail-windows.exe` from the releases and place it in `contrib/windows/`.
-2. Capture cookies with **Get cookies.txt LOCALLY** — installation and usage are below. Save the export as `cookies.txt`; it must include `X-APPLE-WEBAUTH-TOKEN`, `X-APPLE-WEBAUTH-USER`, and `X-APPLE-DS-WEB-SESSION-TOKEN`.
+2. Capture cookies with **Get cookies.txt LOCALLY** — installation and usage are below. Save the export as **`contrib/windows/cookies.txt`** (next to the .bat files; the setup wizard looks there by default); it must include `X-APPLE-WEBAUTH-TOKEN`, `X-APPLE-WEBAUTH-USER`, and `X-APPLE-DS-WEB-SESSION-TOKEN`.
 3. Double-click `首次使用.bat` (`setup.bat`) once to configure, then `启动刷号.bat` (`start-burst.bat`) to generate.
 
 ### Installing the cookie extension
 
 The repository ships the unpacked extension **v0.7.2**:
 
-- Chrome / Edge: `get-cookies.txt-locally_v0.7.2_chrome.zip`
-- Firefox: `get-cookies.txt-locally_v0.7.2_firefox.zip`
+- Chrome / Edge: [`contrib/windows/extensions/get-cookies.txt-locally_v0.7.2_chrome.zip`](contrib/windows/extensions/get-cookies.txt-locally_v0.7.2_chrome.zip)
+- Firefox: [`contrib/windows/extensions/get-cookies.txt-locally_v0.7.2_firefox.zip`](contrib/windows/extensions/get-cookies.txt-locally_v0.7.2_firefox.zip)
 
 **Chrome / Edge**
 
@@ -313,7 +313,7 @@ Official source: <https://github.com/kairi003/Get-cookies.txt-LOCALLY> (also ava
 
 1. Sign in at `https://www.icloud.com.cn` (China) or `https://www.icloud.com` (global).
 2. Open the extension and choose **Export → Header string**.
-3. Save the output as `cookies.txt` (single line).
+3. Save the output as `cookies.txt` in the toolkit folder — i.e. `contrib/windows/cookies.txt`, next to the .bat files (single line). To keep it elsewhere, enter the path in the setup wizard or set `cookie_file` in `config.json`.
 
 ![Exporting cookies with Get cookies.txt LOCALLY](docs/cookies.png)
 

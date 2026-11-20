@@ -87,6 +87,7 @@ macOS 用法与上游完全一致，见仓库根目录的 README。
 | `setup-inbox.ps1` | 配置 IMAP 收件（用于提取验证码） |
 | `setup-inbox.bat` | 双击入口 → `setup-inbox.ps1` |
 | `convert-cookies.ps1` | 把 Netscape 格式 cookie 转成 header / BASE64 |
+| `extensions/` | 浏览器扩展安装包（Get cookies.txt LOCALLY v0.7.2，Chrome/Firefox） |
 
 > `config.json`、`cookies.txt`、`inbox_config.json`、`*.db`、`logs/`、`exports/` 均为运行时生成，已被 `.gitignore` 忽略。
 
@@ -96,10 +97,10 @@ macOS 用法与上游完全一致，见仓库根目录的 README。
 
 ### 推荐：浏览器扩展导出 Header string（两种模式都可用）
 
-使用 **Get cookies.txt LOCALLY v0.7.2**（开源、本地处理、不上传）。仓库根目录已附带安装包：
+使用 **Get cookies.txt LOCALLY v0.7.2**（开源、本地处理、不上传）。`extensions/` 子目录已附带安装包：
 
-- Chrome / Edge：`get-cookies.txt-locally_v0.7.2_chrome.zip`
-- Firefox：`get-cookies.txt-locally_v0.7.2_firefox.zip`
+- Chrome / Edge：`extensions/get-cookies.txt-locally_v0.7.2_chrome.zip`
+- Firefox：`extensions/get-cookies.txt-locally_v0.7.2_firefox.zip`
 
 **安装（Chrome / Edge，解压加载）**
 
@@ -121,7 +122,7 @@ macOS 用法与上游完全一致，见仓库根目录的 README。
 
 1. 在浏览器登录 `https://www.icloud.com.cn`（国区）或 `https://www.icloud.com`（国际区）
 2. 打开扩展，选择 **Export → Header string**
-3. 把导出的内容保存为 `cookies.txt`（单行文本）
+3. 把导出的内容保存为**工具包目录下的 `cookies.txt`**（即 `contrib/windows/cookies.txt`，与 bat 同级——这是 `首次使用.bat` 默认查找的位置）；若想放在别处，在向导里填写路径，或修改 `config.json` 的 `cookie_file`
 
 ![使用 Get cookies.txt LOCALLY 导出 Header string](../../docs/cookies.png)
 
