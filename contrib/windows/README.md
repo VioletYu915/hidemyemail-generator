@@ -23,6 +23,8 @@ macOS 用法与上游完全一致，见仓库根目录的 README。
 
 适合大多数用户，1 分钟完成：
 
+> **如果你下载的是压缩包**：解压后 `hidemyemail-windows.exe` 已经在文件夹里，直接跳过下面第 1–2 步，从第 3 步（导出 cookie）开始即可。
+
 1. 下载 `hidemyemail-windows.exe`：本 fork 的 [v2.1.0-win Release](https://github.com/VioletYu915/hidemyemail-generator/releases/tag/v2.1.0-win)（镜像自上游 v2.1.0）
    `SHA256: D1043F52FC5913B7FEC9E075E9ABE7034626F7BEF56F0E77BC10DB91A6B259DF`
 2. 把 exe 放到本目录（`contrib/windows/`）
