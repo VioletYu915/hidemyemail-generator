@@ -41,6 +41,71 @@
 2. 用 **Get cookies.txt LOCALLY** 导出 iCloud cookie（安装包在 [`contrib/windows/extensions/`](contrib/windows/extensions/)），保存为 `contrib/windows/cookies.txt`。
 3. 双击 `setup.bat`（首次配置）完成配置，之后双击 `start-burst.bat`（启动刷号）开始。
 
+## Windows 工具包详解
+
+本 fork 在 [`contrib/windows/`](contrib/windows/README.md) 提供 Windows 工具包：基于 CLI 增加组模式刷号、归档、批量改标签、IMAP 收件配置，支持两种运行模式：
+
+| | EXE 模式（推荐） | 源码模式 |
+|---|---|---|
+| 前置依赖 | 无（单个 15MB exe） | uv + Python 3.12 + 依赖 |
+| cookie 获取 | 浏览器扩展 | 内置自动抓取 |
+| 每次调用 | 独立进程（1–3 秒启动） | 进程内 |
+| 升级 | 替换 exe | `git pull` + `uv sync` |
+
+### 快速开始（EXE 模式）
+
+1. 下载 `hidemyemail-windows.exe`（本 fork 的 [v2.1.0-win Release](../../releases/tag/v2.1.0-win)，或让 `setup.bat`（首次配置）自动下载），放到 `contrib/windows/`
+2. 用 **Get cookies.txt LOCALLY** 导出 cookie（安装与用法见下）；保存为 **`contrib/windows/cookies.txt`**（与 bat 同级，向导默认查找此处），必须包含 `X-APPLE-WEBAUTH-TOKEN`、`X-APPLE-WEBAUTH-USER`、`X-APPLE-DS-WEB-SESSION-TOKEN`
+3. 双击 `setup.bat`（首次配置）完成配置，之后双击 `start-burst.bat`（启动刷号）开始
+
+### 安装 cookie 扩展
+
+仓库根目录已附带**未打包扩展 v0.7.2**：
+
+- Chrome / Edge：[`contrib/windows/extensions/get-cookies.txt-locally_v0.7.2_chrome.zip`](contrib/windows/extensions/get-cookies.txt-locally_v0.7.2_chrome.zip)
+- Firefox：[`contrib/windows/extensions/get-cookies.txt-locally_v0.7.2_firefox.zip`](contrib/windows/extensions/get-cookies.txt-locally_v0.7.2_firefox.zip)
+
+**Chrome / Edge**
+
+1. 解压到一个固定目录（如 `D:\Tools\get-cookies`）
+2. 打开 `chrome://extensions`（Edge 为 `edge://extensions`），开启「开发者模式」
+3. 点「加载已解压的扩展程序」，选择解压后的文件夹（内含 `manifest.json`）
+
+**Firefox**
+
+1. 打开 `about:debugging#/runtime/this-firefox`
+2. 点「临时载入附加组件」，选择解压后的 `manifest.json`（临时生效；长期使用请从 Firefox Add-ons 安装）
+
+官方来源：<https://github.com/kairi003/Get-cookies.txt-LOCALLY>（Chrome Web Store / Firefox Add-ons 也有）
+
+**使用**
+
+1. 登录 `https://www.icloud.com.cn`（国区）或 `https://www.icloud.com`（国际区）
+2. 打开扩展，选择 **Export → Header string**
+3. 保存为**工具包目录下的 `cookies.txt`**（即 `contrib/windows/cookies.txt`，与 bat 同级，单行文本）；若想放别处，在向导里填写路径或改 `config.json` 的 `cookie_file`
+
+![使用 Get cookies.txt LOCALLY 导出 Header string](contrib/windows/get-cookies.png)
+
+CLI 也支持：单行 cookie header、`HIDEMYEMAIL_COOKIE_BASE64=...`、Cookie-Editor 的 JSON 导出、Copy as cURL；Netscape 格式可用 `convert-cookies.ps1` 转换。
+
+### 日常使用
+
+| 双击文件 | 作用 |
+|---|---|
+| `start-burst.bat`（启动刷号） | 按组模式生成地址 |
+| `stop-burst.bat`（停止刷号） | 停止正在运行的刷号（`-Resume` 可续跑） |
+| `archive.bat`（归档对账） | 云端入库、收件同步、删除对账、导出 CSV |
+| `retag.bat`（批量改标签） | 用 Excel 模板批量改标签/备注 |
+| `setup-inbox.bat`（配置收件） | 配置 IMAP 收件（验证码提取） |
+
+每个文件的具体作用见 [`contrib/windows/README.md`](contrib/windows/README.md) 的「工具包文件说明」。
+
+### 节奏说明
+
+苹果限制约 **每滚动 60 分钟 5 个**（与创建速度无关）。默认组模式：每组 5 个、组内 30–90 秒抖动，第 5 个完成后冷却 60 分钟，约 4.6 个/小时。`config.json` 的 `burst_mode` 可切换为 `interval`（固定间隔）或 `burst`（连发）。
+
+> ⚠️ Cookie 等于账号的完整网页访问权；`cookies.txt`、`inbox_config.json`、本地数据库不要提交到 Git（附带的 `.gitignore` 已覆盖）。
+
 > 本节以下均为上游项目文档（macOS、Android、命令行）。
 
 ## 应用预览
@@ -69,6 +134,7 @@
 ## 目录
 
 - [Windows 工具包（fork）](#windows-工具包fork)
+- [Windows 工具包详解](#windows-工具包详解)
 - [应用预览](#应用预览)
 - [功能亮点](#功能亮点)
 - [快速开始](#快速开始)
@@ -215,71 +281,6 @@ Cookie 管理菜单：
 ```text
 HIDEMYEMAIL_REGION=china
 ```
-
-## Windows 工具包详解
-
-本 fork 在 [`contrib/windows/`](contrib/windows/README.md) 提供 Windows 工具包：基于 CLI 增加组模式刷号、归档、批量改标签、IMAP 收件配置，支持两种运行模式：
-
-| | EXE 模式（推荐） | 源码模式 |
-|---|---|---|
-| 前置依赖 | 无（单个 15MB exe） | uv + Python 3.12 + 依赖 |
-| cookie 获取 | 浏览器扩展 | 内置自动抓取 |
-| 每次调用 | 独立进程（1–3 秒启动） | 进程内 |
-| 升级 | 替换 exe | `git pull` + `uv sync` |
-
-### 快速开始（EXE 模式）
-
-1. 下载 `hidemyemail-windows.exe`（本 fork 的 [v2.1.0-win Release](../../releases/tag/v2.1.0-win)，或让 `setup.bat`（首次配置）自动下载），放到 `contrib/windows/`
-2. 用 **Get cookies.txt LOCALLY** 导出 cookie（安装与用法见下）；保存为 **`contrib/windows/cookies.txt`**（与 bat 同级，向导默认查找此处），必须包含 `X-APPLE-WEBAUTH-TOKEN`、`X-APPLE-WEBAUTH-USER`、`X-APPLE-DS-WEB-SESSION-TOKEN`
-3. 双击 `setup.bat`（首次配置）完成配置，之后双击 `start-burst.bat`（启动刷号）开始
-
-### 安装 cookie 扩展
-
-仓库根目录已附带**未打包扩展 v0.7.2**：
-
-- Chrome / Edge：[`contrib/windows/extensions/get-cookies.txt-locally_v0.7.2_chrome.zip`](contrib/windows/extensions/get-cookies.txt-locally_v0.7.2_chrome.zip)
-- Firefox：[`contrib/windows/extensions/get-cookies.txt-locally_v0.7.2_firefox.zip`](contrib/windows/extensions/get-cookies.txt-locally_v0.7.2_firefox.zip)
-
-**Chrome / Edge**
-
-1. 解压到一个固定目录（如 `D:\Tools\get-cookies`）
-2. 打开 `chrome://extensions`（Edge 为 `edge://extensions`），开启「开发者模式」
-3. 点「加载已解压的扩展程序」，选择解压后的文件夹（内含 `manifest.json`）
-
-**Firefox**
-
-1. 打开 `about:debugging#/runtime/this-firefox`
-2. 点「临时载入附加组件」，选择解压后的 `manifest.json`（临时生效；长期使用请从 Firefox Add-ons 安装）
-
-官方来源：<https://github.com/kairi003/Get-cookies.txt-LOCALLY>（Chrome Web Store / Firefox Add-ons 也有）
-
-**使用**
-
-1. 登录 `https://www.icloud.com.cn`（国区）或 `https://www.icloud.com`（国际区）
-2. 打开扩展，选择 **Export → Header string**
-3. 保存为**工具包目录下的 `cookies.txt`**（即 `contrib/windows/cookies.txt`，与 bat 同级，单行文本）；若想放别处，在向导里填写路径或改 `config.json` 的 `cookie_file`
-
-![使用 Get cookies.txt LOCALLY 导出 Header string](contrib/windows/cookies.png)
-
-CLI 也支持：单行 cookie header、`HIDEMYEMAIL_COOKIE_BASE64=...`、Cookie-Editor 的 JSON 导出、Copy as cURL；Netscape 格式可用 `convert-cookies.ps1` 转换。
-
-### 日常使用
-
-| 双击文件 | 作用 |
-|---|---|
-| `start-burst.bat`（启动刷号） | 按组模式生成地址 |
-| `stop-burst.bat`（停止刷号） | 停止正在运行的刷号（`-Resume` 可续跑） |
-| `archive.bat`（归档对账） | 云端入库、收件同步、删除对账、导出 CSV |
-| `retag.bat`（批量改标签） | 用 Excel 模板批量改标签/备注 |
-| `setup-inbox.bat`（配置收件） | 配置 IMAP 收件（验证码提取） |
-
-每个文件的具体作用见 [`contrib/windows/README.md`](contrib/windows/README.md) 的「工具包文件说明」。
-
-### 节奏说明
-
-苹果限制约 **每滚动 60 分钟 5 个**（与创建速度无关）。默认组模式：每组 5 个、组内 30–90 秒抖动，第 5 个完成后冷却 60 分钟，约 4.6 个/小时。`config.json` 的 `burst_mode` 可切换为 `interval`（固定间隔）或 `burst`（连发）。
-
-> ⚠️ Cookie 等于账号的完整网页访问权；`cookies.txt`、`inbox_config.json`、本地数据库不要提交到 Git（附带的 `.gitignore` 已覆盖）。
 
 ## 命令行用法
 

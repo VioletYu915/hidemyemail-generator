@@ -124,7 +124,7 @@ macOS 用法与上游完全一致，见仓库根目录的 README。
 2. 打开扩展，选择 **Export → Header string**
 3. 把导出的内容保存为**工具包目录下的 `cookies.txt`**（即 `contrib/windows/cookies.txt`，与 bat 同级——这是 `setup.bat`（首次配置）默认查找的位置）；若想放在别处，在向导里填写路径，或修改 `config.json` 的 `cookie_file`
 
-![使用 Get cookies.txt LOCALLY 导出 Header string](cookies.png)
+![使用 Get cookies.txt LOCALLY 导出 Header string](get-cookies.png)
 
 **实测格式**（可直接使用，无需转换）：
 

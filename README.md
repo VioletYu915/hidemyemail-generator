@@ -41,6 +41,71 @@ This fork ships a Windows toolkit in [`contrib/windows/`](contrib/windows/README
 2. Export iCloud cookies with **Get cookies.txt LOCALLY** (bundled in [`contrib/windows/extensions/`](contrib/windows/extensions/)) and save them as `contrib/windows/cookies.txt`.
 3. Double-click `setup.bat` (first-time setup) once to configure, then `start-burst.bat` (start generating) to start.
 
+## Windows Toolkit details
+
+This fork adds a Windows toolkit in [`contrib/windows/`](contrib/windows/README.md). It builds on the CLI with group-paced generation, archiving, batch retagging, and IMAP inbox setup, in one of two modes:
+
+| | EXE mode (recommended) | Source mode |
+|---|---|---|
+| Requirements | none (single 15 MB exe) | uv + Python 3.12 + dependencies |
+| Cookie capture | browser extension | built-in `capture-cookie` |
+| Runtime | one process per call (1–3 s) | in-process |
+| Upgrade | replace the exe | `git pull` + `uv sync` |
+
+### Quick start (EXE mode)
+
+1. Download `hidemyemail-windows.exe` (from [this fork's v2.1.0-win release](../../releases/tag/v2.1.0-win), or let `setup.bat` (first-time setup) download it automatically) and place it in `contrib/windows/`.
+2. Capture cookies with **Get cookies.txt LOCALLY** — installation and usage are below. Save the export as **`contrib/windows/cookies.txt`** (next to the .bat files; the setup wizard looks there by default); it must include `X-APPLE-WEBAUTH-TOKEN`, `X-APPLE-WEBAUTH-USER`, and `X-APPLE-DS-WEB-SESSION-TOKEN`.
+3. Double-click `setup.bat` (first-time setup) once to configure, then `start-burst.bat` (start generating) to generate.
+
+### Installing the cookie extension
+
+The repository ships the unpacked extension **v0.7.2**:
+
+- Chrome / Edge: [`contrib/windows/extensions/get-cookies.txt-locally_v0.7.2_chrome.zip`](contrib/windows/extensions/get-cookies.txt-locally_v0.7.2_chrome.zip)
+- Firefox: [`contrib/windows/extensions/get-cookies.txt-locally_v0.7.2_firefox.zip`](contrib/windows/extensions/get-cookies.txt-locally_v0.7.2_firefox.zip)
+
+**Chrome / Edge**
+
+1. Unzip to a permanent folder (e.g. `D:\Tools\get-cookies`).
+2. Open `chrome://extensions` (Edge: `edge://extensions`) and enable **Developer mode**.
+3. Click **Load unpacked** and select the extracted folder (the one containing `manifest.json`).
+
+**Firefox**
+
+1. Open `about:debugging#/runtime/this-firefox`.
+2. Click **Load Temporary Add-on** and select the extracted `manifest.json` (temporary; gone after restart — install from Firefox Add-ons for a permanent copy).
+
+Official source: <https://github.com/kairi003/Get-cookies.txt-LOCALLY> (also available on the Chrome Web Store and Firefox Add-ons).
+
+**Usage**
+
+1. Sign in at `https://www.icloud.com.cn` (China) or `https://www.icloud.com` (global).
+2. Open the extension and choose **Export → Header string**.
+3. Save the output as `cookies.txt` in the toolkit folder — i.e. `contrib/windows/cookies.txt`, next to the .bat files (single line). To keep it elsewhere, enter the path in the setup wizard or set `cookie_file` in `config.json`.
+
+![Exporting cookies with Get cookies.txt LOCALLY](contrib/windows/get-cookies.png)
+
+The CLI also accepts a raw one-line cookie header, `HIDEMYEMAIL_COOKIE_BASE64=...`, a Cookie-Editor JSON export, or a copied cURL command. Netscape-format exports can be converted with `convert-cookies.ps1`.
+
+### Daily use
+
+| Double-click | Action |
+|---|---|
+| `start-burst.bat` (start generating) | Generate with the group schedule |
+| `stop-burst.bat` (stop) | Stop a running generation (`-Resume` continues it) |
+| `archive.bat` (archive & reconcile) | Sync cloud aliases, read mail, reconcile deletions, export CSV |
+| `retag.bat` (batch retag) | Batch-edit labels and notes from an Excel-friendly CSV |
+| `setup-inbox.bat` (inbox setup) | Configure IMAP for verification-code extraction |
+
+See [`contrib/windows/README.md`](contrib/windows/README.md) for a file-by-file description of the toolkit.
+
+### Pacing
+
+Apple allows about **five creations per rolling 60 minutes**, independent of creation speed. The default group mode creates five with 30–90 s jitter, then waits 60 minutes from the fifth creation — roughly 4.6 per hour. Set `burst_mode` to `interval` or `burst` in `config.json` for other schedules.
+
+> ⚠️ Cookies grant full web access to the account. Keep `cookies.txt`, `inbox_config.json`, and the local database out of Git (the bundled `.gitignore` covers them).
+
 > Everything below this section is the upstream project documentation for macOS, Android and the CLI.
 
 ## App Preview
@@ -94,6 +159,7 @@ Alongside the basics it provides:
 ## Contents
 
 - [Windows Toolkit (fork)](#windows-toolkit-fork)
+- [Windows Toolkit details](#windows-toolkit-details)
 - [App Preview](#app-preview)
 - [Highlights](#highlights)
 - [Quick Start](#quick-start)
@@ -286,71 +352,6 @@ environment variable before launching:
 ```text
 HIDEMYEMAIL_REGION=china
 ```
-
-## Windows Toolkit details
-
-This fork adds a Windows toolkit in [`contrib/windows/`](contrib/windows/README.md). It builds on the CLI with group-paced generation, archiving, batch retagging, and IMAP inbox setup, in one of two modes:
-
-| | EXE mode (recommended) | Source mode |
-|---|---|---|
-| Requirements | none (single 15 MB exe) | uv + Python 3.12 + dependencies |
-| Cookie capture | browser extension | built-in `capture-cookie` |
-| Runtime | one process per call (1–3 s) | in-process |
-| Upgrade | replace the exe | `git pull` + `uv sync` |
-
-### Quick start (EXE mode)
-
-1. Download `hidemyemail-windows.exe` (from [this fork's v2.1.0-win release](../../releases/tag/v2.1.0-win), or let `setup.bat` (first-time setup) download it automatically) and place it in `contrib/windows/`.
-2. Capture cookies with **Get cookies.txt LOCALLY** — installation and usage are below. Save the export as **`contrib/windows/cookies.txt`** (next to the .bat files; the setup wizard looks there by default); it must include `X-APPLE-WEBAUTH-TOKEN`, `X-APPLE-WEBAUTH-USER`, and `X-APPLE-DS-WEB-SESSION-TOKEN`.
-3. Double-click `setup.bat` (first-time setup) once to configure, then `start-burst.bat` (start generating) to generate.
-
-### Installing the cookie extension
-
-The repository ships the unpacked extension **v0.7.2**:
-
-- Chrome / Edge: [`contrib/windows/extensions/get-cookies.txt-locally_v0.7.2_chrome.zip`](contrib/windows/extensions/get-cookies.txt-locally_v0.7.2_chrome.zip)
-- Firefox: [`contrib/windows/extensions/get-cookies.txt-locally_v0.7.2_firefox.zip`](contrib/windows/extensions/get-cookies.txt-locally_v0.7.2_firefox.zip)
-
-**Chrome / Edge**
-
-1. Unzip to a permanent folder (e.g. `D:\Tools\get-cookies`).
-2. Open `chrome://extensions` (Edge: `edge://extensions`) and enable **Developer mode**.
-3. Click **Load unpacked** and select the extracted folder (the one containing `manifest.json`).
-
-**Firefox**
-
-1. Open `about:debugging#/runtime/this-firefox`.
-2. Click **Load Temporary Add-on** and select the extracted `manifest.json` (temporary; gone after restart — install from Firefox Add-ons for a permanent copy).
-
-Official source: <https://github.com/kairi003/Get-cookies.txt-LOCALLY> (also available on the Chrome Web Store and Firefox Add-ons).
-
-**Usage**
-
-1. Sign in at `https://www.icloud.com.cn` (China) or `https://www.icloud.com` (global).
-2. Open the extension and choose **Export → Header string**.
-3. Save the output as `cookies.txt` in the toolkit folder — i.e. `contrib/windows/cookies.txt`, next to the .bat files (single line). To keep it elsewhere, enter the path in the setup wizard or set `cookie_file` in `config.json`.
-
-![Exporting cookies with Get cookies.txt LOCALLY](contrib/windows/cookies.png)
-
-The CLI also accepts a raw one-line cookie header, `HIDEMYEMAIL_COOKIE_BASE64=...`, a Cookie-Editor JSON export, or a copied cURL command. Netscape-format exports can be converted with `convert-cookies.ps1`.
-
-### Daily use
-
-| Double-click | Action |
-|---|---|
-| `start-burst.bat` (start generating) | Generate with the group schedule |
-| `stop-burst.bat` (stop) | Stop a running generation (`-Resume` continues it) |
-| `archive.bat` (archive & reconcile) | Sync cloud aliases, read mail, reconcile deletions, export CSV |
-| `retag.bat` (batch retag) | Batch-edit labels and notes from an Excel-friendly CSV |
-| `setup-inbox.bat` (inbox setup) | Configure IMAP for verification-code extraction |
-
-See [`contrib/windows/README.md`](contrib/windows/README.md) for a file-by-file description of the toolkit.
-
-### Pacing
-
-Apple allows about **five creations per rolling 60 minutes**, independent of creation speed. The default group mode creates five with 30–90 s jitter, then waits 60 minutes from the fifth creation — roughly 4.6 per hour. Set `burst_mode` to `interval` or `burst` in `config.json` for other schedules.
-
-> ⚠️ Cookies grant full web access to the account. Keep `cookies.txt`, `inbox_config.json`, and the local database out of Git (the bundled `.gitignore` covers them).
 
 ## CLI Reference
 
