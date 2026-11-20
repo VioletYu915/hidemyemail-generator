@@ -75,17 +75,17 @@ macOS 用法与上游完全一致，见仓库根目录的 README。
 | `config.example.json` | 配置模板；`setup.bat`（首次配置）会据此生成 `config.json` |
 | `hme-common.ps1` | 共享函数：双模式运行、能力探测降级、读取本地地址 |
 | `setup.ps1` | 首次配置向导（选模式、验证 cookie、写入 config.json） |
-| `setup.bat`（首次配置）| 双击入口 → `setup.ps1` |
+| `setup.bat`（首次配置） | 双击入口 → `setup.ps1` |
 | `burst-gen.ps1` | 刷号驱动：组 / 间隔 / 连发三种模式、限速冷却、网络重试 |
-| `start-burst.bat`（启动刷号）| 双击入口 → `burst-gen.ps1` |
+| `start-burst.bat`（启动刷号） | 双击入口 → `burst-gen.ps1` |
 | `stop-burst.ps1` | 停止刷号：整树终止进程，并显示当前批次（可 `-Resume`） |
-| `stop-burst.bat`（停止刷号）| 双击入口 → `stop-burst.ps1` |
+| `stop-burst.bat`（停止刷号） | 双击入口 → `stop-burst.ps1` |
 | `sync.ps1` | 归档：云端入库 → 收件同步 → 删除对账 → 导出 CSV |
-| `archive.bat`（归档对账）| 双击入口 → `sync.ps1` |
+| `archive.bat`（归档对账） | 双击入口 → `sync.ps1` |
 | `retag.ps1` | 批量改标签/备注（Excel CSV 模板；留空=保持，`-`=清空） |
-| `retag.bat`（批量改标签）| 双击入口 → `retag.ps1` |
+| `retag.bat`（批量改标签） | 双击入口 → `retag.ps1` |
 | `setup-inbox.ps1` | 配置 IMAP 收件（用于提取验证码） |
-| `setup-inbox.bat`（配置收件）| 双击入口 → `setup-inbox.ps1` |
+| `setup-inbox.bat`（配置收件） | 双击入口 → `setup-inbox.ps1` |
 | `convert-cookies.ps1` | 把 Netscape 格式 cookie 转成 header / BASE64 |
 | `extensions/` | 浏览器扩展安装包（Get cookies.txt LOCALLY v0.7.2，Chrome/Firefox） |
 
@@ -183,12 +183,12 @@ powershell -ExecutionPolicy Bypass -File .\convert-cookies.ps1 -Source exported.
 
 | 双击文件 | 作用 |
 |---|---|
-| `setup.bat`（首次配置）| 选模式、验证 cookie、生成 `config.json` |
-| `start-burst.bat`（启动刷号）| 按组模式批量生成地址（会提示本次数量） |
-| `stop-burst.bat`（停止刷号）| 停止正在运行的刷号进程（可 `-Resume` 续跑） |
-| `archive.bat`（归档对账）| 云端地址入库 + 收件同步 + 删除对账 + 导出 CSV |
-| `retag.bat`（批量改标签）| 批量修改标签/备注（Excel 模板，留空=保持，`-`=清空） |
-| `setup-inbox.bat`（配置收件）| 配置 IMAP 收件（用于验证码提取） |
+| `setup.bat`（首次配置） | 选模式、验证 cookie、生成 `config.json` |
+| `start-burst.bat`（启动刷号） | 按组模式批量生成地址（会提示本次数量） |
+| `stop-burst.bat`（停止刷号） | 停止正在运行的刷号进程（可 `-Resume` 续跑） |
+| `archive.bat`（归档对账） | 云端地址入库 + 收件同步 + 删除对账 + 导出 CSV |
+| `retag.bat`（批量改标签） | 批量修改标签/备注（Excel 模板，留空=保持，`-`=清空） |
+| `setup-inbox.bat`（配置收件） | 配置 IMAP 收件（用于验证码提取） |
 
 日志：`logs\<日期>-burst\burst.log`、`logs\<日期>\sync.log`
 导出：`exports\<年月>\addresses.csv`、`messages.csv`
