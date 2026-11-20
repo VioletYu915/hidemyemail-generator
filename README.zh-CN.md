@@ -201,6 +201,44 @@ Cookie 管理菜单：
 HIDEMYEMAIL_REGION=china
 ```
 
+## Windows 工具包（本 fork 新增）
+
+本 fork 在 [`contrib/windows/`](contrib/windows/README.md) 提供 Windows 工具包：基于 CLI 增加组模式刷号、归档、批量改标签、IMAP 收件配置，支持两种运行模式：
+
+| | EXE 模式（推荐） | 源码模式 |
+|---|---|---|
+| 前置依赖 | 无（单个 15MB exe） | uv + Python 3.12 + 依赖 |
+| cookie 获取 | 浏览器扩展 | 内置自动抓取 |
+| 每次调用 | 独立进程（1–3 秒启动） | 进程内 |
+| 升级 | 替换 exe | `git pull` + `uv sync` |
+
+### 快速开始（EXE 模式）
+
+1. 从 Releases 下载 `hidemyemail-windows.exe`，放到 `contrib/windows/`
+2. 用 **Get cookies.txt LOCALLY** 导出 cookie（扩展在本地处理，不上传）：
+   - 登录 `https://www.icloud.com.cn`（国区）或 `https://www.icloud.com`（国际区）
+   - 打开扩展，选择 **Export → Header string**
+   - 保存为 `cookies.txt`；必须包含 `X-APPLE-WEBAUTH-TOKEN`、`X-APPLE-WEBAUTH-USER`、`X-APPLE-DS-WEB-SESSION-TOKEN`
+3. 双击 `首次使用.bat`（`setup.bat`）完成配置，之后双击 `启动刷号.bat`（`start-burst.bat`）开始
+
+CLI 也支持：单行 cookie header、`HIDEMYEMAIL_COOKIE_BASE64=...`、Cookie-Editor 的 JSON 导出、Copy as cURL；Netscape 格式可用 `convert-cookies.ps1` 转换。
+
+### 日常使用
+
+| 双击文件 | 作用 |
+|---|---|
+| `启动刷号.bat` / `start-burst.bat` | 按组模式生成地址 |
+| `停止刷号.bat` / `stop-burst.bat` | 停止正在运行的刷号（`-Resume` 可续跑） |
+| `归档.bat` / `archive.bat` | 云端入库、收件同步、删除对账、导出 CSV |
+| `改标签.bat` / `retag.bat` | 用 Excel 模板批量改标签/备注 |
+| `setup-inbox.bat` | 配置 IMAP 收件（验证码提取） |
+
+### 节奏说明
+
+苹果限制约 **每滚动 60 分钟 5 个**（与创建速度无关）。默认组模式：每组 5 个、组内 30–90 秒抖动，第 5 个完成后冷却 60 分钟，约 4.6 个/小时。`config.json` 的 `burst_mode` 可切换为 `interval`（固定间隔）或 `burst`（连发）。
+
+> ⚠️ Cookie 等于账号的完整网页访问权；`cookies.txt`、`inbox_config.json`、本地数据库不要提交到 Git（附带的 `.gitignore` 已覆盖）。
+
 ## 命令行用法
 
 命令默认使用 `global` 区域。加上 `--region china`（或设置

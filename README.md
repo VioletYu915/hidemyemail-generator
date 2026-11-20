@@ -272,6 +272,44 @@ environment variable before launching:
 HIDEMYEMAIL_REGION=china
 ```
 
+## Windows Toolkit (fork)
+
+This fork adds a Windows toolkit in [`contrib/windows/`](contrib/windows/README.md). It builds on the CLI with group-paced generation, archiving, batch retagging, and IMAP inbox setup, in one of two modes:
+
+| | EXE mode (recommended) | Source mode |
+|---|---|---|
+| Requirements | none (single 15 MB exe) | uv + Python 3.12 + dependencies |
+| Cookie capture | browser extension | built-in `capture-cookie` |
+| Runtime | one process per call (1–3 s) | in-process |
+| Upgrade | replace the exe | `git pull` + `uv sync` |
+
+### Quick start (EXE mode)
+
+1. Download `hidemyemail-windows.exe` from the releases and place it in `contrib/windows/`.
+2. Capture cookies with **Get cookies.txt LOCALLY** (processes locally, does not upload):
+   - Sign in at `https://www.icloud.com.cn` (China) or `https://www.icloud.com` (global).
+   - Open the extension and choose **Export → Header string**.
+   - Save the output as `cookies.txt`. It must include `X-APPLE-WEBAUTH-TOKEN`, `X-APPLE-WEBAUTH-USER`, and `X-APPLE-DS-WEB-SESSION-TOKEN`.
+3. Double-click `首次使用.bat` (`setup.bat`) once to configure, then `启动刷号.bat` (`start-burst.bat`) to generate.
+
+The CLI also accepts a raw one-line cookie header, `HIDEMYEMAIL_COOKIE_BASE64=...`, a Cookie-Editor JSON export, or a copied cURL command. Netscape-format exports can be converted with `convert-cookies.ps1`.
+
+### Daily use
+
+| Double-click | Action |
+|---|---|
+| `启动刷号.bat` / `start-burst.bat` | Generate with the group schedule |
+| `停止刷号.bat` / `stop-burst.bat` | Stop a running generation (`-Resume` continues it) |
+| `归档.bat` / `archive.bat` | Sync cloud aliases, read mail, reconcile deletions, export CSV |
+| `改标签.bat` / `retag.bat` | Batch-edit labels and notes from an Excel-friendly CSV |
+| `setup-inbox.bat` | Configure IMAP for verification-code extraction |
+
+### Pacing
+
+Apple allows about **five creations per rolling 60 minutes**, independent of creation speed. The default group mode creates five with 30–90 s jitter, then waits 60 minutes from the fifth creation — roughly 4.6 per hour. Set `burst_mode` to `interval` or `burst` in `config.json` for other schedules.
+
+> ⚠️ Cookies grant full web access to the account. Keep `cookies.txt`, `inbox_config.json`, and the local database out of Git (the bundled `.gitignore` covers them).
+
 ## CLI Reference
 
 Commands default to the `global` region. Add `--region china` (or set
