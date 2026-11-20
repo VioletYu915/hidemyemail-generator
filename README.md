@@ -37,9 +37,9 @@
 
 This fork ships a Windows toolkit in [`contrib/windows/`](contrib/windows/README.md). It wraps the CLI with group-paced generation and automatic cooldown, archiving with reconciliation, batch retagging, and IMAP inbox setup — in EXE mode (no Python) or source mode.
 
-1. Get `hidemyemail-windows.exe` — double-click `setup.bat` and it downloads and SHA256-verifies the binary for you (or download it above and drop it into `contrib/windows/`).
+1. Get `hidemyemail-windows.exe` — double-click `setup.bat` (first-time setup) and it downloads and SHA256-verifies the binary for you (or download it above and drop it into `contrib/windows/`).
 2. Export iCloud cookies with **Get cookies.txt LOCALLY** (bundled in [`contrib/windows/extensions/`](contrib/windows/extensions/)) and save them as `contrib/windows/cookies.txt`.
-3. Double-click `setup.bat` once to configure, then `start-burst.bat` to start.
+3. Double-click `setup.bat` (first-time setup) once to configure, then `start-burst.bat` (start generating) to start.
 
 > Everything below this section is the upstream project documentation for macOS, Android and the CLI.
 
@@ -136,7 +136,7 @@ Alongside the basics it provides:
 
 Grab a standalone binary from the [upstream latest release](https://github.com/rtunazzz/hidemyemail-generator/releases/latest) — no Python or `uv` required.
 
-- **Windows:** download `hidemyemail-windows.exe` from this fork's [v2.1.0-win release](../../releases/tag/v2.1.0-win) — the toolkit's `setup.bat` can also fetch it automatically — then place it in `contrib/windows/`. Double-click it to open the interactive menu, or run it from a terminal with arguments for CLI usage (`hidemyemail-windows.exe --help`).
+- **Windows:** download `hidemyemail-windows.exe` from this fork's [v2.1.0-win release](../../releases/tag/v2.1.0-win) — the toolkit's `setup.bat` (first-time setup) can also fetch it automatically — then place it in `contrib/windows/`. Double-click it to open the interactive menu, or run it from a terminal with arguments for CLI usage (`hidemyemail-windows.exe --help`).
 - **macOS app:** download the
   [Apple Silicon DMG](https://github.com/rtunazzz/hidemyemail-generator/releases/latest/download/HideMyEmail-Generator-macOS-Apple-Silicon.dmg)
   for M-series Macs or the
@@ -300,9 +300,9 @@ This fork adds a Windows toolkit in [`contrib/windows/`](contrib/windows/README.
 
 ### Quick start (EXE mode)
 
-1. Download `hidemyemail-windows.exe` (from [this fork's v2.1.0-win release](../../releases/tag/v2.1.0-win), or let `setup.bat` download it automatically) and place it in `contrib/windows/`.
+1. Download `hidemyemail-windows.exe` (from [this fork's v2.1.0-win release](../../releases/tag/v2.1.0-win), or let `setup.bat` (first-time setup) download it automatically) and place it in `contrib/windows/`.
 2. Capture cookies with **Get cookies.txt LOCALLY** — installation and usage are below. Save the export as **`contrib/windows/cookies.txt`** (next to the .bat files; the setup wizard looks there by default); it must include `X-APPLE-WEBAUTH-TOKEN`, `X-APPLE-WEBAUTH-USER`, and `X-APPLE-DS-WEB-SESSION-TOKEN`.
-3. Double-click `setup.bat` once to configure, then `start-burst.bat` to generate.
+3. Double-click `setup.bat` (first-time setup) once to configure, then `start-burst.bat` (start generating) to generate.
 
 ### Installing the cookie extension
 
@@ -338,11 +338,11 @@ The CLI also accepts a raw one-line cookie header, `HIDEMYEMAIL_COOKIE_BASE64=..
 
 | Double-click | Action |
 |---|---|
-| `start-burst.bat` | Generate with the group schedule |
-| `stop-burst.bat` | Stop a running generation (`-Resume` continues it) |
-| `archive.bat` | Sync cloud aliases, read mail, reconcile deletions, export CSV |
-| `retag.bat` | Batch-edit labels and notes from an Excel-friendly CSV |
-| `setup-inbox.bat` | Configure IMAP for verification-code extraction |
+| `start-burst.bat` (start generating) | Generate with the group schedule |
+| `stop-burst.bat` (stop) | Stop a running generation (`-Resume` continues it) |
+| `archive.bat` (archive & reconcile) | Sync cloud aliases, read mail, reconcile deletions, export CSV |
+| `retag.bat` (batch retag) | Batch-edit labels and notes from an Excel-friendly CSV |
+| `setup-inbox.bat` (inbox setup) | Configure IMAP for verification-code extraction |
 
 See [`contrib/windows/README.md`](contrib/windows/README.md) for a file-by-file description of the toolkit.
 
