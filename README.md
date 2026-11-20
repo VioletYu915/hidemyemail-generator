@@ -30,15 +30,15 @@
 ## Windows Toolkit (fork)
 
 <p align="center">
-  <a href="https://github.com/VioletYu915/hidemyemail-generator/releases/tag/v2.1.0-win"><strong>Download for Windows (.exe)</strong></a>
+  <a href="https://github.com/VioletYu915/hidemyemail-generator/releases/latest"><strong>Download the Windows toolkit (.zip)</strong></a>
   ·
   <a href="contrib/windows/README.md"><strong>Toolkit documentation</strong></a>
 </p>
 
 This fork ships a Windows toolkit in [`contrib/windows/`](contrib/windows/README.md). It wraps the CLI with group-paced generation and automatic cooldown, archiving with reconciliation, batch retagging, and IMAP inbox setup — in EXE mode (no Python) or source mode.
 
-1. Download `hidemyemail-windows.exe` from the release above and drop it into `contrib/windows/`.
-2. Export iCloud cookies with **Get cookies.txt LOCALLY** (bundled in [`contrib/windows/extensions/`](contrib/windows/extensions/)) and save them as `contrib/windows/cookies.txt`.
+1. Download `hidemyemail-windows-toolkit-v2.1.0.zip` from the release above and unzip it anywhere — the EXE, all launchers and both cookie extensions are already inside.
+2. Export iCloud cookies with **Get cookies.txt LOCALLY** (bundled in `extensions/` inside the zip) and save them as `cookies.txt` in the unzipped folder.
 3. Double-click `setup.bat` (first-time setup) once to configure, then `start-burst.bat` (start generating) to start.
 
 ## Windows Toolkit details
@@ -54,8 +54,8 @@ This fork adds a Windows toolkit in [`contrib/windows/`](contrib/windows/README.
 
 ### Quick start (EXE mode)
 
-1. Download `hidemyemail-windows.exe` from [this fork's v2.1.0-win release](../../releases/tag/v2.1.0-win) and place it in `contrib/windows/`.
-2. Capture cookies with **Get cookies.txt LOCALLY** — installation and usage are below. Save the export as **`contrib/windows/cookies.txt`** (next to the .bat files; the setup wizard looks there by default); it must include `X-APPLE-WEBAUTH-TOKEN`, `X-APPLE-WEBAUTH-USER`, and `X-APPLE-DS-WEB-SESSION-TOKEN`.
+1. Download the Windows toolkit zip from [this fork's release](../../releases/latest) and unzip it anywhere.
+2. Capture cookies with **Get cookies.txt LOCALLY** — installation and usage are below. Save the export as **`cookies.txt`** in the toolkit folder (the unzipped one, or `contrib/windows/` in a clone); it must include `X-APPLE-WEBAUTH-TOKEN`, `X-APPLE-WEBAUTH-USER`, and `X-APPLE-DS-WEB-SESSION-TOKEN`.
 3. Double-click `setup.bat` (first-time setup) once to configure, then `start-burst.bat` (start generating) to generate.
 
 ### Installing the cookie extension
@@ -202,7 +202,7 @@ Alongside the basics it provides:
 
 Grab a standalone binary from the [upstream latest release](https://github.com/rtunazzz/hidemyemail-generator/releases/latest) — no Python or `uv` required.
 
-- **Windows:** download `hidemyemail-windows.exe` from this fork's [v2.1.0-win release](../../releases/tag/v2.1.0-win) and place it in `contrib/windows/`. Double-click it to open the interactive menu, or run it from a terminal with arguments for CLI usage (`hidemyemail-windows.exe --help`).
+- **Windows:** download the Windows toolkit zip from this fork's [release](../../releases/latest) — it bundles the EXE, the launchers and the cookie extensions — then unzip it anywhere and run `setup.bat`. For CLI usage, run `hidemyemail-windows.exe --help` from the unzipped folder.
 - **macOS app:** download the
   [Apple Silicon DMG](https://github.com/rtunazzz/hidemyemail-generator/releases/latest/download/HideMyEmail-Generator-macOS-Apple-Silicon.dmg)
   for M-series Macs or the

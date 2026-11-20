@@ -19,16 +19,13 @@ macOS 用法与上游完全一致，见仓库根目录的 README。
 
 ## 安装方式（二选一）
 
-### 方式 A：EXE 模式（★ 推荐，无需 Python）
+### 方式 A：压缩包（★ 推荐，无需 Python）
 
 适合大多数用户，1 分钟完成：
 
-> **如果你下载的是压缩包**：解压后 `hidemyemail-windows.exe` 已经在文件夹里，直接跳过下面第 1–2 步，从第 3 步（导出 cookie）开始即可。
-
-1. 下载 `hidemyemail-windows.exe`：本 fork 的 [v2.1.0-win Release](https://github.com/VioletYu915/hidemyemail-generator/releases/tag/v2.1.0-win)（镜像自上游 v2.1.0）
-   `SHA256: D1043F52FC5913B7FEC9E075E9ABE7034626F7BEF56F0E77BC10DB91A6B259DF`
-2. 把 exe 放到本目录（`contrib/windows/`）
-3. 用浏览器扩展导出 cookie，保存为 `cookies.txt`（见下一节）
+1. 从本 fork 的 [Release](https://github.com/VioletYu915/hidemyemail-generator/releases/latest) 下载 `hidemyemail-windows-toolkit-v2.1.0.zip`（体积与 SHA256 见 Release 说明）
+2. 解压到任意目录（例如 `D:\Tools\hidemyemail`，路径别带特殊符号）——`hidemyemail-windows.exe`、启动脚本、扩展安装包都已在里面
+3. 用浏览器扩展导出 cookie，保存为解压目录下的 `cookies.txt`（见下一节）
 4. 双击 **`setup.bat`（首次配置）**，按提示选择 1（EXE）并完成配置
 5. 双击 **`start-burst.bat`（启动刷号）** 开始
 
@@ -84,7 +81,7 @@ macOS 用法与上游完全一致，见仓库根目录的 README。
 | `get-cookies.png` | cookie 扩展导出步骤的截图（本文档引用） |
 | `extensions/` | 浏览器扩展安装包（Get cookies.txt LOCALLY v0.7.2，Chrome/Firefox） |
 
-> `config.json`、`cookies.txt`、`inbox_config.json`、`*.db`、`logs/`、`exports/` 都是本机运行时生成的，已被 `.gitignore` 忽略；`hidemyemail-windows.exe` 需单独下载（或随压缩包提供），同样不进仓库。
+> `config.json`、`cookies.txt`、`inbox_config.json`、`*.db`、`logs/`、`exports/` 都是本机运行时生成的，已被 `.gitignore` 忽略；`hidemyemail-windows.exe` 随压缩包提供（从仓库使用时自行放入），同样不进仓库。
 
 ---
 
