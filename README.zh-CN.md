@@ -37,7 +37,7 @@
 
 本 fork 在 [`contrib/windows/`](contrib/windows/README.md) 提供一套 Windows 工具包：在 CLI 之上封装了组模式刷号与自动冷却、归档对账、批量改标签、IMAP 收件配置，支持 EXE 模式（无需 Python）和源码模式。
 
-1. 获取 `hidemyemail-windows.exe`：双击 `setup.bat`（首次配置）会自动下载并校验 SHA256（也可从上方链接下载后放进 `contrib/windows/`）。
+1. 从上方链接下载 `hidemyemail-windows.exe`，放进 `contrib/windows/`。
 2. 用 **Get cookies.txt LOCALLY** 导出 iCloud cookie（安装包在 [`contrib/windows/extensions/`](contrib/windows/extensions/)），保存为 `contrib/windows/cookies.txt`。
 3. 双击 `setup.bat`（首次配置）完成配置，之后双击 `start-burst.bat`（启动刷号）开始。
 
@@ -54,7 +54,7 @@
 
 ### 快速开始（EXE 模式）
 
-1. 下载 `hidemyemail-windows.exe`（本 fork 的 [v2.1.0-win Release](../../releases/tag/v2.1.0-win)，或让 `setup.bat`（首次配置）自动下载），放到 `contrib/windows/`
+1. 下载 `hidemyemail-windows.exe`（本 fork 的 [v2.1.0-win Release](../../releases/tag/v2.1.0-win)），放到 `contrib/windows/`
 2. 用 **Get cookies.txt LOCALLY** 导出 cookie（安装与用法见下）；保存为 **`contrib/windows/cookies.txt`**（与 bat 同级，向导默认查找此处），必须包含 `X-APPLE-WEBAUTH-TOKEN`、`X-APPLE-WEBAUTH-USER`、`X-APPLE-DS-WEB-SESSION-TOKEN`
 3. 双击 `setup.bat`（首次配置）完成配置，之后双击 `start-burst.bat`（启动刷号）开始
 
@@ -177,7 +177,7 @@ CLI 也支持：单行 cookie header、`HIDEMYEMAIL_COOKIE_BASE64=...`、Cookie-
 
 从[上游最新发行版](https://github.com/rtunazzz/hidemyemail-generator/releases/latest)下载独立二进制文件，无需安装 Python 或 `uv`。
 
-- **Windows：** 从本 fork 的 [v2.1.0-win Release](../../releases/tag/v2.1.0-win) 下载 `hidemyemail-windows.exe`（`setup.bat`（首次配置）也可自动下载），放到 `contrib/windows/`。双击打开交互式菜单，或在终端中带参数运行以使用命令行（`hidemyemail-windows.exe --help`）。
+- **Windows：** 从本 fork 的 [v2.1.0-win Release](../../releases/tag/v2.1.0-win) 下载 `hidemyemail-windows.exe`，放到 `contrib/windows/`。双击打开交互式菜单，或在终端中带参数运行以使用命令行（`hidemyemail-windows.exe --help`）。
 - **macOS 应用：** M 系列 Mac 下载
   [Apple 芯片版 DMG](https://github.com/rtunazzz/hidemyemail-generator/releases/latest/download/HideMyEmail-Generator-macOS-Apple-Silicon.dmg)，
   Intel Mac 下载

@@ -23,7 +23,7 @@ macOS 用法与上游完全一致，见仓库根目录的 README。
 
 适合大多数用户，1 分钟完成：
 
-1. 下载 `hidemyemail-windows.exe`：本 fork 的 [v2.1.0-win Release](https://github.com/VioletYu915/hidemyemail-generator/releases/tag/v2.1.0-win)（镜像自上游 v2.1.0；若文件缺失，`setup.bat`（首次配置）会自动下载并校验 SHA256）
+1. 下载 `hidemyemail-windows.exe`：本 fork 的 [v2.1.0-win Release](https://github.com/VioletYu915/hidemyemail-generator/releases/tag/v2.1.0-win)（镜像自上游 v2.1.0）
    `SHA256: D1043F52FC5913B7FEC9E075E9ABE7034626F7BEF56F0E77BC10DB91A6B259DF`
 2. 把 exe 放到本目录（`contrib/windows/`）
 3. 用浏览器扩展导出 cookie，保存为 `cookies.txt`（见下一节）
@@ -72,7 +72,6 @@ macOS 用法与上游完全一致，见仓库根目录的 README。
 | 文件 | 作用 |
 |---|---|
 | `README.md` | 本文档：安装、cookie、用法、限速原理、FAQ |
-| `config.example.json` | 配置模板；`setup.bat`（首次配置）会据此生成 `config.json` |
 | `hme-common.ps1` | 共享函数：双模式运行、能力探测降级、读取本地地址 |
 | `setup.ps1` | 首次配置向导（选模式、验证 cookie、写入 config.json） |
 | `setup.bat`（首次配置） | 双击入口 → `setup.ps1` |
@@ -89,7 +88,7 @@ macOS 用法与上游完全一致，见仓库根目录的 README。
 | `convert-cookies.ps1` | 把 Netscape 格式 cookie 转成 header / BASE64 |
 | `extensions/` | 浏览器扩展安装包（Get cookies.txt LOCALLY v0.7.2，Chrome/Firefox） |
 
-> `config.json`、`cookies.txt`、`inbox_config.json`、`hidemyemail-windows.exe`（首次向导自动下载）、`*.db`、`logs/`、`exports/` 均为运行时生成，已被 `.gitignore` 忽略。
+> `config.json`、`cookies.txt`、`inbox_config.json`、`*.db`、`logs/`、`exports/` 都是本机运行时生成的，已被 `.gitignore` 忽略；`hidemyemail-windows.exe` 需单独下载（或随压缩包提供），同样不进仓库。
 
 ---
 
@@ -247,6 +246,10 @@ powershell -ExecutionPolicy Bypass -File .\convert-cookies.ps1 -Source exported.
 | `db_file` | `hidemyemail.db` | 本地 SQLite 库 |
 | `export_dir` / `log_dir` | `exports` / `logs` | 导出与日志目录 |
 | `emails_output` | `emails.txt` | 生成的地址追加保存到此处 |
+| `uv_path` | （空） | 源码模式下 `uv` 的完整路径，留空则从 PATH 查找 |
+| `burst_interval_minutes` | `10` | 间隔模式下的周期（分钟） |
+| `network_retry_count` | `3` | 网络错误的重试次数 |
+| `network_retry_seconds` | `60` | 每次重试前等待的秒数 |
 | `reconcile_enabled` | `true` | 归档时是否做"云端已删→本地标 trash"对账 |
 | `daily_target` | `10` | 每次启动默认数量 |
 
