@@ -12,7 +12,9 @@ param(
   [string]$Config = ""
 )
 
-if (-not $Config) { $Config = Join-Path $PSScriptRoot "config.json" }
+
+$root = Split-Path $PSScriptRoot -Parent
+if (-not $Config) { $Config = Join-Path $root "config.json" }
 
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 $OutputEncoding = [System.Text.Encoding]::UTF8
@@ -23,7 +25,7 @@ function Resolve-InputPath {
   param([string]$p)
   if (-not $p) { return $p }
   if ([System.IO.Path]::IsPathRooted($p)) { return $p }
-  return (Join-Path $PSScriptRoot $p)
+  return (Join-Path $root $p)
 }
 
 $cfg = $null
@@ -45,7 +47,7 @@ $hmeSrc = if ($cfg -and $cfg.hme_src) { "$($cfg.hme_src)" } else { "../hidemyema
 if ($runMode -eq "exe") {
   $candidate = Resolve-InputPath $hmeExe
   if (-not (Test-Path $candidate)) {
-    $found = Get-ChildItem $PSScriptRoot -Filter "hidemyemail*.exe" -File -ErrorAction SilentlyContinue | Select-Object -First 1
+    $found = Get-ChildItem $root -Filter "hidemyemail*.exe" -File -ErrorAction SilentlyContinue | Select-Object -First 1
     if ($found) { $candidate = $found.FullName }
   }
 

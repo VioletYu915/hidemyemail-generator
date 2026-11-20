@@ -12,7 +12,7 @@ function Resolve-CfgPath {
   param([string]$PathValue)
   if (-not $PathValue) { return $PathValue }
   if ([System.IO.Path]::IsPathRooted($PathValue)) { return $PathValue }
-  return (Join-Path $PSScriptRoot $PathValue)
+  return (Join-Path (Split-Path $PSScriptRoot -Parent) $PathValue)
 }
 
 function Initialize-HmePaths {

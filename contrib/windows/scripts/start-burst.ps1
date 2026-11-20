@@ -1,5 +1,5 @@
 ﻿<#
-  burst-gen.ps1 — hidemyemail 批量刷号驱动（三模式，由 config.json 的 burst_mode 切换）
+  start-burst.ps1 — hidemyemail 批量刷号驱动（三模式，由 config.json 的 burst_mode 切换）
 
   兼容性：
     - 源码模式：支持 batch 记账（-Resume 精确续跑）
@@ -20,9 +20,9 @@
 
   用法：
     双击 start-burst.bat（推荐）
-    powershell -ExecutionPolicy Bypass -File .\burst-gen.ps1
-    powershell -ExecutionPolicy Bypass -File .\burst-gen.ps1 -Resume
-    powershell -ExecutionPolicy Bypass -File .\burst-gen.ps1 -Target 20 -IntervalMinutes 15 -CooldownMinutes 60
+    powershell -ExecutionPolicy Bypass -File .\scripts\start-burst.ps1
+    powershell -ExecutionPolicy Bypass -File .\scripts\start-burst.ps1 -Resume
+    powershell -ExecutionPolicy Bypass -File .\scripts\start-burst.ps1 -Target 20 -IntervalMinutes 15 -CooldownMinutes 60
 #>
 [CmdletBinding()]
 param(
@@ -35,7 +35,9 @@ param(
   [string]$Config = ""
 )
 
-if (-not $Config) { $Config = Join-Path $PSScriptRoot "config.json" }
+
+$root = Split-Path $PSScriptRoot -Parent
+if (-not $Config) { $Config = Join-Path $root "config.json" }
 
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 $OutputEncoding = [System.Text.Encoding]::UTF8

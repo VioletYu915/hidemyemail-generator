@@ -1,6 +1,6 @@
 ﻿<#
   stop-burst.ps1 — 停止 burst 刷号
-  1) 查找命令行为 burst-gen.ps1 的 PowerShell 进程（排除自身）
+  1) 查找命令行为 start-burst.ps1 的 PowerShell 进程（排除自身）
   2) 整树终止（连同正在运行的 uv / python / exe 子进程）
   3) 读取 burst-state.json，提示当前批次可 -Resume 续跑
   用法：双击 stop-burst.bat
@@ -10,19 +10,21 @@ param(
   [string]$Config = ""
 )
 
-if (-not $Config) { $Config = Join-Path $PSScriptRoot "config.json" }
+
+$root = Split-Path $PSScriptRoot -Parent
+if (-not $Config) { $Config = Join-Path $root "config.json" }
 
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 $OutputEncoding = [System.Text.Encoding]::UTF8
 
-# 状态文件与 burst-gen.ps1 保持一致：位于 db_file 所在目录
-$stateFile = Join-Path $PSScriptRoot "burst-state.json"
+# 状态文件与 start-burst.ps1 保持一致：位于 db_file 所在目录
+$stateFile = Join-Path $root "burst-state.json"
 if (Test-Path $Config) {
   try {
     $cfg = Get-Content $Config -Raw | ConvertFrom-Json
     $db = "$($cfg.db_file)"
     if ($db) {
-      if (-not [System.IO.Path]::IsPathRooted($db)) { $db = Join-Path $PSScriptRoot $db }
+      if (-not [System.IO.Path]::IsPathRooted($db)) { $db = Join-Path $root $db }
       $stateFile = Join-Path (Split-Path $db -Parent) "burst-state.json"
     }
   }
@@ -35,7 +37,7 @@ function Get-BurstProcesses {
       $_.Name -in @("powershell.exe", "pwsh.exe") -and
       $_.ProcessId -ne $PID -and
       $_.CommandLine -and
-      $_.CommandLine.Contains("burst-gen.ps1")
+      $_.CommandLine.Contains("start-burst.ps1")
     }
 }
 
@@ -64,7 +66,7 @@ if (Test-Path $stateFile) {
     $state = Get-Content $stateFile -Raw | ConvertFrom-Json
     Write-Host "当前批次: $($state.batch_id)（label=$($state.label)，已创建数保存在本地库）"
     Write-Host "如需继续该批次，在工具包目录运行:"
-    Write-Host "  powershell -ExecutionPolicy Bypass -File `"$PSScriptRoot\burst-gen.ps1`" -Resume"
+    Write-Host "  powershell -ExecutionPolicy Bypass -File `"$PSScriptRoot\start-burst.ps1`" -Resume"
   }
   catch { }
 }

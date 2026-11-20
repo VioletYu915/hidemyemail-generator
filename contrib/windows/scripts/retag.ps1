@@ -4,10 +4,10 @@
   用法：
     双击 retag.bat（交互菜单，推荐）
     或命令行：
-      powershell -File retag.ps1 -Template     生成/刷新模板 retag.csv（导出当前全部地址）
-      powershell -File retag.ps1 -DryRun       预览将执行的修改（不动数据）
-      powershell -File retag.ps1 -Apply        执行修改（交互确认）
-      powershell -File retag.ps1 -Apply -Yes   执行修改（跳过确认，供自动化）
+      powershell -File .\scripts\retag.ps1 -Template     生成/刷新模板 retag.csv（导出当前全部地址）
+      powershell -File .\scripts\retag.ps1 -DryRun       预览将执行的修改（不动数据）
+      powershell -File .\scripts\retag.ps1 -Apply        执行修改（交互确认）
+      powershell -File .\scripts\retag.ps1 -Apply -Yes   执行修改（跳过确认，供自动化）
 
   模板填写规则（新标签/新备注 两列）：
     留空     = 保持原值
@@ -29,7 +29,9 @@ param(
   [string]$Config = ""
 )
 
-if (-not $Config) { $Config = Join-Path $PSScriptRoot "config.json" }
+
+$root = Split-Path $PSScriptRoot -Parent
+if (-not $Config) { $Config = Join-Path $root "config.json" }
 
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 $OutputEncoding = [System.Text.Encoding]::UTF8
@@ -47,7 +49,7 @@ $cfg = Get-Content $Config -Raw | ConvertFrom-Json
 Initialize-HmePaths
 $caps = Get-HmeCapabilities
 
-$csvPath = Join-Path $PSScriptRoot "retag.csv"
+$csvPath = Join-Path $root "retag.csv"
 
 function Read-CsvSmart {
   param([string]$Path)

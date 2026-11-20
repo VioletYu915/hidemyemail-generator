@@ -13,7 +13,9 @@ param(
   [string]$ICloudEmail = ""
 )
 
-if (-not $Config) { $Config = Join-Path $PSScriptRoot "config.json" }
+
+$root = Split-Path $PSScriptRoot -Parent
+if (-not $Config) { $Config = Join-Path $root "config.json" }
 
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 $OutputEncoding = [System.Text.Encoding]::UTF8

@@ -1,5 +1,5 @@
 ﻿<#
-  sync.ps1 — 归档
+  archive.ps1 — 归档
   步骤：sync-hme（云端地址入库）→ inbox sync（邮件+验证码）→ 删除对账 → 导出 CSV → 汇总
 
   兼容性：
@@ -13,7 +13,9 @@ param(
   [string]$Config = ""
 )
 
-if (-not $Config) { $Config = Join-Path $PSScriptRoot "config.json" }
+
+$root = Split-Path $PSScriptRoot -Parent
+if (-not $Config) { $Config = Join-Path $root "config.json" }
 
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 $OutputEncoding = [System.Text.Encoding]::UTF8

@@ -72,20 +72,14 @@ macOS 用法与上游完全一致，见仓库根目录的 README。
 | 文件 | 作用 |
 |---|---|
 | `README.md` | 本文档：安装、cookie、用法、限速原理、FAQ |
-| `hme-common.ps1` | 共享函数：双模式运行、能力探测降级、读取本地地址 |
-| `setup.ps1` | 首次配置向导（选模式、验证 cookie、写入 config.json） |
-| `setup.bat`（首次配置） | 双击入口 → `setup.ps1` |
-| `burst-gen.ps1` | 刷号驱动：组 / 间隔 / 连发三种模式、限速冷却、网络重试 |
-| `start-burst.bat`（启动刷号） | 双击入口 → `burst-gen.ps1` |
-| `stop-burst.ps1` | 停止刷号：整树终止进程，并显示当前批次（可 `-Resume`） |
-| `stop-burst.bat`（停止刷号） | 双击入口 → `stop-burst.ps1` |
-| `sync.ps1` | 归档：云端入库 → 收件同步 → 删除对账 → 导出 CSV |
-| `archive.bat`（归档对账） | 双击入口 → `sync.ps1` |
-| `retag.ps1` | 批量改标签/备注（Excel CSV 模板；留空=保持，`-`=清空） |
-| `retag.bat`（批量改标签） | 双击入口 → `retag.ps1` |
-| `setup-inbox.ps1` | 配置 IMAP 收件（用于提取验证码） |
-| `setup-inbox.bat`（配置收件） | 双击入口 → `setup-inbox.ps1` |
-| `convert-cookies.ps1` | 把 Netscape 格式 cookie 转成 header / BASE64 |
+| `setup.bat`（首次配置） | 双击入口 → `scripts/setup.ps1`：选模式、验证 cookie、写入 `config.json` |
+| `start-burst.bat`（启动刷号） | 双击入口 → `scripts/start-burst.ps1`：组 / 间隔 / 连发三种模式、限速冷却、网络重试 |
+| `stop-burst.bat`（停止刷号） | 双击入口 → `scripts/stop-burst.ps1`：整树终止进程，显示当前批次（可 `-Resume`） |
+| `archive.bat`（归档对账） | 双击入口 → `scripts/archive.ps1`：云端入库 → 收件同步 → 删除对账 → 导出 CSV |
+| `retag.bat`（批量改标签） | 双击入口 → `scripts/retag.ps1`：Excel CSV 模板批量改标签/备注（留空=保持，`-`=清空） |
+| `setup-inbox.bat`（配置收件） | 双击入口 → `scripts/setup-inbox.ps1`：配置 IMAP 收件，用于提取验证码 |
+| `scripts/` | 实际执行的 PowerShell 脚本，用户无需直接运行 |
+| `get-cookies.png` | cookie 扩展导出步骤的截图（本文档引用） |
 | `extensions/` | 浏览器扩展安装包（Get cookies.txt LOCALLY v0.7.2，Chrome/Firefox） |
 
 > `config.json`、`cookies.txt`、`inbox_config.json`、`*.db`、`logs/`、`exports/` 都是本机运行时生成的，已被 `.gitignore` 忽略；`hidemyemail-windows.exe` 需单独下载（或随压缩包提供），同样不进仓库。
@@ -155,9 +149,9 @@ macOS 用法与上游完全一致，见仓库根目录的 README。
 如果导出的是 Netscape 文本（以 `# Netscape HTTP Cookie File` 开头），用附带脚本转换：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\convert-cookies.ps1 -Source exported.txt -Out cookies.txt
+powershell -ExecutionPolicy Bypass -File .\scripts\convert-cookies.ps1 -Source exported.txt -Out cookies.txt
 # 或输出 BASE64 格式（更稳）：
-powershell -ExecutionPolicy Bypass -File .\convert-cookies.ps1 -Source exported.txt -Out cookies.txt -Base64
+powershell -ExecutionPolicy Bypass -File .\scripts\convert-cookies.ps1 -Source exported.txt -Out cookies.txt -Base64
 ```
 
 ### 验证 cookie

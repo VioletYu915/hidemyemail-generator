@@ -86,7 +86,7 @@ Official source: <https://github.com/kairi003/Get-cookies.txt-LOCALLY> (also ava
 
 ![Exporting cookies with Get cookies.txt LOCALLY](contrib/windows/get-cookies.png)
 
-The CLI also accepts a raw one-line cookie header, `HIDEMYEMAIL_COOKIE_BASE64=...`, a Cookie-Editor JSON export, or a copied cURL command. Netscape-format exports can be converted with `convert-cookies.ps1`.
+The CLI also accepts a raw one-line cookie header, `HIDEMYEMAIL_COOKIE_BASE64=...`, a Cookie-Editor JSON export, or a copied cURL command. Netscape-format exports can be converted with `scripts/convert-cookies.ps1`.
 
 ### Daily use
 

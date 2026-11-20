@@ -5,8 +5,8 @@
             而 hidemyemail 需要单行 Cookie header 或 BASE64 格式。
 
   用法：
-    powershell -File convert-cookies.ps1 -Source exported.txt -Out cookies.txt
-    powershell -File convert-cookies.ps1 -Source exported.txt -Out cookies.txt -Base64
+    powershell -File .\scripts\convert-cookies.ps1 -Source exported.txt -Out cookies.txt
+    powershell -File .\scripts\convert-cookies.ps1 -Source exported.txt -Out cookies.txt -Base64
 
   说明：
     - 默认输出单行 Cookie header：name=value; name2=value2
@@ -20,7 +20,9 @@ param(
 )
 
 if (-not (Test-Path $Source)) { Write-Host "[ERR] 找不到源文件: $Source"; exit 1 }
-if (-not [System.IO.Path]::IsPathRooted($Out)) { $Out = Join-Path $PSScriptRoot $Out }
+
+$root = Split-Path $PSScriptRoot -Parent
+if (-not [System.IO.Path]::IsPathRooted($Out)) { $Out = Join-Path $root $Out }
 
 $pairs = @()
 foreach ($line in (Get-Content $Source)) {

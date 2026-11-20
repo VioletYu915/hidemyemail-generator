@@ -1,6 +1,6 @@
 @echo off
 chcp 65001 >nul
 cd /d "%~dp0"
-powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0setup-inbox.ps1" %*
+powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0scripts\setup-inbox.ps1" %*
 echo.
 pause
