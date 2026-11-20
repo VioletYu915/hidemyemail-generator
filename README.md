@@ -102,7 +102,7 @@ See [`contrib/windows/README.md`](contrib/windows/README.md) for a file-by-file 
 
 ### Pacing
 
-Apple allows about **five creations per rolling 60 minutes**, independent of creation speed. The default group mode creates five with 30–90 s jitter, then waits 60 minutes from the fifth creation — roughly 4.6 per hour. Set `burst_mode` to `interval` or `burst` in `config.json` for other schedules.
+Apple counts creations over a **rolling 60-minute window**: five spread across the hour cost exactly the same as five in a row. The sixth is rejected (`-41015`) until 60 minutes have passed since the fifth creation — pacing cannot bypass the limit. The default group mode creates five with 30–90 s jitter, then waits 60 minutes from the fifth creation, for roughly 4.6 per hour. Set `burst_mode` to `interval` or `burst` in `config.json` for other schedules.
 
 > ⚠️ Cookies grant full web access to the account. Keep `cookies.txt`, `inbox_config.json`, and the local database out of Git (the bundled `.gitignore` covers them).
 
