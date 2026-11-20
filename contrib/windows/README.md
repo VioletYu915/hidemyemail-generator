@@ -67,15 +67,63 @@ macOS 用法与上游完全一致，见仓库根目录的 README。
 
 ---
 
+## 工具包文件说明
+
+| 文件 | 作用 |
+|---|---|
+| `README.md` | 本文档：安装、cookie、用法、限速原理、FAQ |
+| `config.example.json` | 配置模板；`首次使用.bat` 会据此生成 `config.json` |
+| `hme-common.ps1` | 共享函数：双模式运行、能力探测降级、读取本地地址 |
+| `setup.ps1` | 首次配置向导（选模式、验证 cookie、写入 config.json） |
+| `首次使用.bat` / `setup.bat` | 双击入口 → `setup.ps1` |
+| `burst-gen.ps1` | 刷号驱动：组 / 间隔 / 连发三种模式、限速冷却、网络重试 |
+| `启动刷号.bat` / `start-burst.bat` | 双击入口 → `burst-gen.ps1` |
+| `stop-burst.ps1` | 停止刷号：整树终止进程，并显示当前批次（可 `-Resume`） |
+| `停止刷号.bat` / `stop-burst.bat` | 双击入口 → `stop-burst.ps1` |
+| `sync.ps1` | 归档：云端入库 → 收件同步 → 删除对账 → 导出 CSV |
+| `归档.bat` / `archive.bat` | 双击入口 → `sync.ps1` |
+| `retag.ps1` | 批量改标签/备注（Excel CSV 模板；留空=保持，`-`=清空） |
+| `改标签.bat` / `retag.bat` | 双击入口 → `retag.ps1` |
+| `setup-inbox.ps1` | 配置 IMAP 收件（用于提取验证码） |
+| `setup-inbox.bat` | 双击入口 → `setup-inbox.ps1` |
+| `convert-cookies.ps1` | 把 Netscape 格式 cookie 转成 header / BASE64 |
+
+> `config.json`、`cookies.txt`、`inbox_config.json`、`*.db`、`logs/`、`exports/` 均为运行时生成，已被 `.gitignore` 忽略。
+
+---
+
 ## 获取 cookies.txt
 
 ### 推荐：浏览器扩展导出 Header string（两种模式都可用）
 
-使用 **Get cookies.txt LOCALLY**（扩展在本地处理，不上传）：
+使用 **Get cookies.txt LOCALLY v0.7.2**（开源、本地处理、不上传）。仓库根目录已附带安装包：
+
+- Chrome / Edge：`get-cookies.txt-locally_v0.7.2_chrome.zip`
+- Firefox：`get-cookies.txt-locally_v0.7.2_firefox.zip`
+
+**安装（Chrome / Edge，解压加载）**
+
+1. 解压 zip 到一个固定目录（如 `D:\Tools\get-cookies`）
+2. 地址栏打开 `chrome://extensions`（Edge 为 `edge://extensions`）
+3. 打开右上角「开发者模式」
+4. 点「加载已解压的扩展程序」，选择解压后的文件夹（里面应有 `manifest.json`）
+5. 可点扩展图标旁的图钉固定到工具栏
+
+**安装（Firefox）**
+
+1. 地址栏打开 `about:debugging#/runtime/this-firefox`
+2. 点「临时载入附加组件」，选择解压后的 `manifest.json`
+3. 注意：临时载入在浏览器重启后失效；需要长期使用请从 Firefox Add-ons 安装正式版
+
+> 官方来源：<https://github.com/kairi003/Get-cookies.txt-LOCALLY>（也可直接从 Chrome Web Store / Firefox Add-ons 安装）
+
+**使用**
 
 1. 在浏览器登录 `https://www.icloud.com.cn`（国区）或 `https://www.icloud.com`（国际区）
 2. 打开扩展，选择 **Export → Header string**
 3. 把导出的内容保存为 `cookies.txt`（单行文本）
+
+![使用 Get cookies.txt LOCALLY 导出 Header string](../../docs/cookies.png)
 
 **实测格式**（可直接使用，无需转换）：
 

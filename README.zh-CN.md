@@ -215,11 +215,36 @@ HIDEMYEMAIL_REGION=china
 ### 快速开始（EXE 模式）
 
 1. 从 Releases 下载 `hidemyemail-windows.exe`，放到 `contrib/windows/`
-2. 用 **Get cookies.txt LOCALLY** 导出 cookie（扩展在本地处理，不上传）：
-   - 登录 `https://www.icloud.com.cn`（国区）或 `https://www.icloud.com`（国际区）
-   - 打开扩展，选择 **Export → Header string**
-   - 保存为 `cookies.txt`；必须包含 `X-APPLE-WEBAUTH-TOKEN`、`X-APPLE-WEBAUTH-USER`、`X-APPLE-DS-WEB-SESSION-TOKEN`
+2. 用 **Get cookies.txt LOCALLY** 导出 cookie（安装与用法见下）；保存为 `cookies.txt`，必须包含 `X-APPLE-WEBAUTH-TOKEN`、`X-APPLE-WEBAUTH-USER`、`X-APPLE-DS-WEB-SESSION-TOKEN`
 3. 双击 `首次使用.bat`（`setup.bat`）完成配置，之后双击 `启动刷号.bat`（`start-burst.bat`）开始
+
+### 安装 cookie 扩展
+
+仓库根目录已附带**未打包扩展 v0.7.2**：
+
+- Chrome / Edge：`get-cookies.txt-locally_v0.7.2_chrome.zip`
+- Firefox：`get-cookies.txt-locally_v0.7.2_firefox.zip`
+
+**Chrome / Edge**
+
+1. 解压到一个固定目录（如 `D:\Tools\get-cookies`）
+2. 打开 `chrome://extensions`（Edge 为 `edge://extensions`），开启「开发者模式」
+3. 点「加载已解压的扩展程序」，选择解压后的文件夹（内含 `manifest.json`）
+
+**Firefox**
+
+1. 打开 `about:debugging#/runtime/this-firefox`
+2. 点「临时载入附加组件」，选择解压后的 `manifest.json`（临时生效；长期使用请从 Firefox Add-ons 安装）
+
+官方来源：<https://github.com/kairi003/Get-cookies.txt-LOCALLY>（Chrome Web Store / Firefox Add-ons 也有）
+
+**使用**
+
+1. 登录 `https://www.icloud.com.cn`（国区）或 `https://www.icloud.com`（国际区）
+2. 打开扩展，选择 **Export → Header string**
+3. 保存为 `cookies.txt`（单行文本）
+
+![使用 Get cookies.txt LOCALLY 导出 Header string](docs/cookies.png)
 
 CLI 也支持：单行 cookie header、`HIDEMYEMAIL_COOKIE_BASE64=...`、Cookie-Editor 的 JSON 导出、Copy as cURL；Netscape 格式可用 `convert-cookies.ps1` 转换。
 
@@ -232,6 +257,8 @@ CLI 也支持：单行 cookie header、`HIDEMYEMAIL_COOKIE_BASE64=...`、Cookie-
 | `归档.bat` / `archive.bat` | 云端入库、收件同步、删除对账、导出 CSV |
 | `改标签.bat` / `retag.bat` | 用 Excel 模板批量改标签/备注 |
 | `setup-inbox.bat` | 配置 IMAP 收件（验证码提取） |
+
+每个文件的具体作用见 [`contrib/windows/README.md`](contrib/windows/README.md) 的「工具包文件说明」。
 
 ### 节奏说明
 

@@ -286,11 +286,36 @@ This fork adds a Windows toolkit in [`contrib/windows/`](contrib/windows/README.
 ### Quick start (EXE mode)
 
 1. Download `hidemyemail-windows.exe` from the releases and place it in `contrib/windows/`.
-2. Capture cookies with **Get cookies.txt LOCALLY** (processes locally, does not upload):
-   - Sign in at `https://www.icloud.com.cn` (China) or `https://www.icloud.com` (global).
-   - Open the extension and choose **Export → Header string**.
-   - Save the output as `cookies.txt`. It must include `X-APPLE-WEBAUTH-TOKEN`, `X-APPLE-WEBAUTH-USER`, and `X-APPLE-DS-WEB-SESSION-TOKEN`.
+2. Capture cookies with **Get cookies.txt LOCALLY** — installation and usage are below. Save the export as `cookies.txt`; it must include `X-APPLE-WEBAUTH-TOKEN`, `X-APPLE-WEBAUTH-USER`, and `X-APPLE-DS-WEB-SESSION-TOKEN`.
 3. Double-click `首次使用.bat` (`setup.bat`) once to configure, then `启动刷号.bat` (`start-burst.bat`) to generate.
+
+### Installing the cookie extension
+
+The repository ships the unpacked extension **v0.7.2**:
+
+- Chrome / Edge: `get-cookies.txt-locally_v0.7.2_chrome.zip`
+- Firefox: `get-cookies.txt-locally_v0.7.2_firefox.zip`
+
+**Chrome / Edge**
+
+1. Unzip to a permanent folder (e.g. `D:\Tools\get-cookies`).
+2. Open `chrome://extensions` (Edge: `edge://extensions`) and enable **Developer mode**.
+3. Click **Load unpacked** and select the extracted folder (the one containing `manifest.json`).
+
+**Firefox**
+
+1. Open `about:debugging#/runtime/this-firefox`.
+2. Click **Load Temporary Add-on** and select the extracted `manifest.json` (temporary; gone after restart — install from Firefox Add-ons for a permanent copy).
+
+Official source: <https://github.com/kairi003/Get-cookies.txt-LOCALLY> (also available on the Chrome Web Store and Firefox Add-ons).
+
+**Usage**
+
+1. Sign in at `https://www.icloud.com.cn` (China) or `https://www.icloud.com` (global).
+2. Open the extension and choose **Export → Header string**.
+3. Save the output as `cookies.txt` (single line).
+
+![Exporting cookies with Get cookies.txt LOCALLY](docs/cookies.png)
 
 The CLI also accepts a raw one-line cookie header, `HIDEMYEMAIL_COOKIE_BASE64=...`, a Cookie-Editor JSON export, or a copied cURL command. Netscape-format exports can be converted with `convert-cookies.ps1`.
 
@@ -303,6 +328,8 @@ The CLI also accepts a raw one-line cookie header, `HIDEMYEMAIL_COOKIE_BASE64=..
 | `归档.bat` / `archive.bat` | Sync cloud aliases, read mail, reconcile deletions, export CSV |
 | `改标签.bat` / `retag.bat` | Batch-edit labels and notes from an Excel-friendly CSV |
 | `setup-inbox.bat` | Configure IMAP for verification-code extraction |
+
+See [`contrib/windows/README.md`](contrib/windows/README.md) for a file-by-file description of the toolkit.
 
 ### Pacing
 
