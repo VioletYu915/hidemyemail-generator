@@ -94,9 +94,9 @@ CLI 也支持：单行 cookie header、`HIDEMYEMAIL_COOKIE_BASE64=...`、Cookie-
 |---|---|
 | `start-burst.bat`（启动刷号） | 按组模式生成地址 |
 | `stop-burst.bat`（停止刷号） | 停止正在运行的刷号（`-Resume` 可续跑） |
-| `archive.bat`（归档对账） | 云端入库、收件同步、删除对账、导出 CSV |
+| `sync.bat`（同步归档） | 云端入库、收件同步、删除对账、导出 CSV |
 | `retag.bat`（批量改标签） | 用 Excel 模板批量改标签/备注 |
-| `setup-inbox.bat`（配置收件） | 配置 IMAP 收件（验证码提取） |
+| `inbox.bat`（配置收件） | 配置 IMAP 收件（验证码提取） |
 
 每个文件的具体作用见 [`contrib/windows/README.md`](contrib/windows/README.md) 的「工具包文件说明」。
 

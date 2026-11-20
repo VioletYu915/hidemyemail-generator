@@ -1,11 +1,11 @@
 ﻿<#
-  setup-inbox.ps1 v2 — 一次性配置 IMAP 收件（含登录校验与重试）
+  inbox.ps1 v2 — 一次性配置 IMAP 收件（含登录校验与重试）
   1) 输入完整 iCloud 邮箱（必须含 @，校验格式）
   2) 粘贴应用专用密码（Ctrl+V 粘贴，输入不回显）
   3) 校验 IMAP 登录（失败可重试，最多 3 轮）
   4) 保存 hidemyemail 配置（用于同步邮件和提取验证码）
 
-  用法：双击 setup-inbox.bat
+  用法：双击 inbox.bat
 #>
 [CmdletBinding()]
 param(

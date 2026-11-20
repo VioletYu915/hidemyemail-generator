@@ -1,5 +1,5 @@
 ﻿<#
-  archive.ps1 — 归档
+  sync.ps1 — 同步归档
   步骤：sync-hme（云端地址入库）→ inbox sync（邮件+验证码）→ 删除对账 → 导出 CSV → 汇总
 
   兼容性：

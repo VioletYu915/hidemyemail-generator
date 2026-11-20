@@ -75,9 +75,9 @@ macOS 用法与上游完全一致，见仓库根目录的 README。
 | `setup.bat`（首次配置） | 双击入口 → `scripts/setup.ps1`：选模式、验证 cookie、写入 `config.json` |
 | `start-burst.bat`（启动刷号） | 双击入口 → `scripts/start-burst.ps1`：组 / 间隔 / 连发三种模式、限速冷却、网络重试 |
 | `stop-burst.bat`（停止刷号） | 双击入口 → `scripts/stop-burst.ps1`：整树终止进程，显示当前批次（可 `-Resume`） |
-| `archive.bat`（归档对账） | 双击入口 → `scripts/archive.ps1`：云端入库 → 收件同步 → 删除对账 → 导出 CSV |
+| `sync.bat`（同步归档） | 双击入口 → `scripts/sync.ps1`：云端入库 → 收件同步 → 删除对账 → 导出 CSV |
 | `retag.bat`（批量改标签） | 双击入口 → `scripts/retag.ps1`：Excel CSV 模板批量改标签/备注（留空=保持，`-`=清空） |
-| `setup-inbox.bat`（配置收件） | 双击入口 → `scripts/setup-inbox.ps1`：配置 IMAP 收件，用于提取验证码 |
+| `inbox.bat`（配置收件） | 双击入口 → `scripts/inbox.ps1`：配置 IMAP 收件，用于提取验证码 |
 | `scripts/` | 实际执行的 PowerShell 脚本，用户无需直接运行 |
 | `get-cookies.png` | cookie 扩展导出步骤的截图（本文档引用） |
 | `extensions/` | 浏览器扩展安装包（Get cookies.txt LOCALLY v0.7.2，Chrome/Firefox） |
@@ -179,9 +179,9 @@ powershell -ExecutionPolicy Bypass -File .\scripts\convert-cookies.ps1 -Source e
 | `setup.bat`（首次配置） | 选模式、验证 cookie、生成 `config.json` |
 | `start-burst.bat`（启动刷号） | 按组模式批量生成地址（会提示本次数量） |
 | `stop-burst.bat`（停止刷号） | 停止正在运行的刷号进程（可 `-Resume` 续跑） |
-| `archive.bat`（归档对账） | 云端地址入库 + 收件同步 + 删除对账 + 导出 CSV |
+| `sync.bat`（同步归档） | 云端地址入库 + 收件同步 + 删除对账 + 导出 CSV |
 | `retag.bat`（批量改标签） | 批量修改标签/备注（Excel 模板，留空=保持，`-`=清空） |
-| `setup-inbox.bat`（配置收件） | 配置 IMAP 收件（用于验证码提取） |
+| `inbox.bat`（配置收件） | 配置 IMAP 收件（用于验证码提取） |
 
 日志：`logs\<日期>-burst\burst.log`、`logs\<日期>\sync.log`
 导出：`exports\<年月>\addresses.csv`、`messages.csv`
@@ -236,7 +236,7 @@ powershell -ExecutionPolicy Bypass -File .\scripts\convert-cookies.ps1 -Source e
 | `hme_src` | `../hidemyemail` | 源码模式下仓库目录 |
 | `region` | `china` | `china`（icloud.com.cn）或 `global` |
 | `cookie_file` | `cookies.txt` | cookie 文件 |
-| `inbox_config` | `inbox_config.json` | IMAP 配置（由 setup-inbox 生成） |
+| `inbox_config` | `inbox_config.json` | IMAP 配置（由 inbox.bat 生成） |
 | `db_file` | `hidemyemail.db` | 本地 SQLite 库 |
 | `export_dir` / `log_dir` | `exports` / `logs` | 导出与日志目录 |
 | `emails_output` | `emails.txt` | 生成的地址追加保存到此处 |

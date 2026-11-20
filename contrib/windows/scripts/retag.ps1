@@ -87,7 +87,7 @@ if ($Template) {
   Write-Host "读取本地库地址..."
   $addrs = @(Get-LocalAddressRows)
   if ($addrs.Count -eq 0) {
-    Write-Host "[ERR] 本地库没有地址（先跑一次 archive.bat 同步？）"
+    Write-Host "[ERR] 本地库没有地址（先跑一次 sync.bat 同步？）"
     exit 1
   }
   $rows = $addrs | ForEach-Object {

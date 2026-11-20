@@ -94,9 +94,9 @@ The CLI also accepts a raw one-line cookie header, `HIDEMYEMAIL_COOKIE_BASE64=..
 |---|---|
 | `start-burst.bat` (start generating) | Generate with the group schedule |
 | `stop-burst.bat` (stop) | Stop a running generation (`-Resume` continues it) |
-| `archive.bat` (archive & reconcile) | Sync cloud aliases, read mail, reconcile deletions, export CSV |
+| `sync.bat` (sync & reconcile) | Sync cloud aliases, read mail, reconcile deletions, export CSV |
 | `retag.bat` (batch retag) | Batch-edit labels and notes from an Excel-friendly CSV |
-| `setup-inbox.bat` (inbox setup) | Configure IMAP for verification-code extraction |
+| `inbox.bat` (inbox setup) | Configure IMAP for verification-code extraction |
 
 See [`contrib/windows/README.md`](contrib/windows/README.md) for a file-by-file description of the toolkit.
 
