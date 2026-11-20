@@ -1,0 +1,23 @@
+{
+  "run_mode": "exe",
+  "hme_exe": "hidemyemail-windows.exe",
+  "hme_src": "../hidemyemail",
+  "uv_path": "",
+  "region": "china",
+  "cookie_file": "cookies.txt",
+  "inbox_config": "inbox_config.json",
+  "db_file": "hidemyemail.db",
+  "export_dir": "exports",
+  "log_dir": "logs",
+  "emails_output": "emails.txt",
+  "reconcile_enabled": true,
+  "cooldown_minutes": 60,
+  "burst_interval_minutes": 10,
+  "burst_mode": "group",
+  "burst_group_size": 5,
+  "burst_group_gap_seconds": 60,
+  "burst_group_jitter_seconds": 30,
+  "network_retry_count": 3,
+  "network_retry_seconds": 60,
+  "daily_target": 10
+}

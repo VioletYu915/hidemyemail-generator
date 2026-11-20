@@ -10,6 +10,8 @@
   包含 macOS 原生登录、Android 客户端、Windows 启动器、iCloud 中国区支持和本地收件台。
 </p>
 
+> **本 fork 新增：** Windows 工具包（EXE/源码双模式、组模式刷号、归档、批量改标签）见 [`contrib/windows/`](contrib/windows/README.md)。
+
 <p align="center">
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-2ea44f"></a>
   <img alt="Python 3.12+" src="https://img.shields.io/badge/python-3.12%2B-3776ab?logo=python&logoColor=white">

@@ -26,3 +26,11 @@ android/build/
 android/*.apk
 android/*.aab
 android/*.png
+
+# Windows toolkit local state (never commit)
+config.json
+logs/
+retag.csv
+burst-state.json
+*.db
+*.db-*

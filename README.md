@@ -10,6 +10,8 @@
   Includes native macOS sign-in, an Android client, a Windows launcher, iCloud China support, and a local inbox.
 </p>
 
+> **Fork addition:** a Windows toolkit (EXE/source dual mode, group-paced generation, archiving, batch retagging) lives in [`contrib/windows/`](contrib/windows/README.md).
+
 <p align="center">
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-2ea44f"></a>
   <img alt="Python 3.12+" src="https://img.shields.io/badge/python-3.12%2B-3776ab?logo=python&logoColor=white">
