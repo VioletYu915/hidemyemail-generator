@@ -5,7 +5,7 @@
   3) 检查 cookies.txt 并验证登录
   4) 生成 config.json
 
-  用法：双击 首次使用.bat
+  用法：双击 setup.bat
 #>
 [CmdletBinding()]
 param(
@@ -191,4 +191,4 @@ $newCfg = [ordered]@{
 
 Write-Host ""
 Write-Host "[OK] 配置已写入: $Config"
-Write-Host "下一步：双击 启动刷号.bat 开始"
+Write-Host "下一步：双击 start-burst.bat 开始"

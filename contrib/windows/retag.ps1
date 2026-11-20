@@ -2,7 +2,7 @@
   retag.ps1 — 批量修改隐藏邮箱的标签/备注（可复用）
 
   用法：
-    双击 改标签.bat（交互菜单，推荐）
+    双击 retag.bat（交互菜单，推荐）
     或命令行：
       powershell -File retag.ps1 -Template     生成/刷新模板 retag.csv（导出当前全部地址）
       powershell -File retag.ps1 -DryRun       预览将执行的修改（不动数据）
@@ -35,6 +35,12 @@ if (-not $Config) { $Config = Join-Path $PSScriptRoot "config.json" }
 $OutputEncoding = [System.Text.Encoding]::UTF8
 $env:PYTHONIOENCODING = "utf-8"
 $env:PYTHONUTF8 = "1"
+
+if (-not (Test-Path $Config)) {
+  Write-Host "[ERR] 未找到 config.json" -ForegroundColor Red
+  Write-Host "      请先双击 setup.bat 完成首次配置（会生成 config.json），或指定 -Config <路径>"
+  exit 1
+}
 
 $cfg = Get-Content $Config -Raw | ConvertFrom-Json
 . (Join-Path $PSScriptRoot "hme-common.ps1")
@@ -79,7 +85,7 @@ if ($Template) {
   Write-Host "读取本地库地址..."
   $addrs = @(Get-LocalAddressRows)
   if ($addrs.Count -eq 0) {
-    Write-Host "[ERR] 本地库没有地址（先跑一次 归档.bat 同步？）"
+    Write-Host "[ERR] 本地库没有地址（先跑一次 archive.bat 同步？）"
     exit 1
   }
   $rows = $addrs | ForEach-Object {
@@ -95,7 +101,7 @@ if ($Template) {
   Write-Host ""
   Write-Host "[OK] 已生成模板：$csvPath（共 $($rows.Count) 条）"
   Write-Host "     用 Excel 填写 新标签/新备注 列：留空=保持，文字=修改，单个减号 - = 清空"
-  Write-Host "     填好后双击 改标签.bat，选 2 预览、选 3 执行"
+  Write-Host "     填好后双击 retag.bat，选 2 预览、选 3 执行"
   exit 0
 }
 

@@ -19,7 +19,7 @@
   互斥：不要与其它生成工具同时运行，避免共享 Apple 配额互相干扰
 
   用法：
-    双击 启动刷号.bat（推荐）
+    双击 start-burst.bat（推荐）
     powershell -ExecutionPolicy Bypass -File .\burst-gen.ps1
     powershell -ExecutionPolicy Bypass -File .\burst-gen.ps1 -Resume
     powershell -ExecutionPolicy Bypass -File .\burst-gen.ps1 -Target 20 -IntervalMinutes 15 -CooldownMinutes 60
@@ -41,6 +41,12 @@ if (-not $Config) { $Config = Join-Path $PSScriptRoot "config.json" }
 $OutputEncoding = [System.Text.Encoding]::UTF8
 $env:PYTHONIOENCODING = "utf-8"
 $env:PYTHONUTF8 = "1"
+
+if (-not (Test-Path $Config)) {
+  Write-Host "[ERR] 未找到 config.json" -ForegroundColor Red
+  Write-Host "      请先双击 setup.bat 完成首次配置（会生成 config.json），或指定 -Config <路径>"
+  exit 1
+}
 
 $cfg = Get-Content $Config -Raw | ConvertFrom-Json
 . (Join-Path $PSScriptRoot "hme-common.ps1")

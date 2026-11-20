@@ -3,7 +3,7 @@
   1) 查找命令行为 burst-gen.ps1 的 PowerShell 进程（排除自身）
   2) 整树终止（连同正在运行的 uv / python / exe 子进程）
   3) 读取 burst-state.json，提示当前批次可 -Resume 续跑
-  用法：双击 停止刷号.bat
+  用法：双击 stop-burst.bat
 #>
 [CmdletBinding()]
 param(

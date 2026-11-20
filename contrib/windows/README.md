@@ -23,21 +23,21 @@ macOS 用法与上游完全一致，见仓库根目录的 README。
 
 适合大多数用户，1 分钟完成：
 
-1. 下载 `hidemyemail-windows.exe`：本 fork 的 [v2.1.0-win Release](https://github.com/VioletYu915/hidemyemail-generator/releases/tag/v2.1.0-win)（镜像自上游 v2.1.0；若文件缺失，`首次使用.bat` 会自动下载并校验 SHA256）
+1. 下载 `hidemyemail-windows.exe`：本 fork 的 [v2.1.0-win Release](https://github.com/VioletYu915/hidemyemail-generator/releases/tag/v2.1.0-win)（镜像自上游 v2.1.0；若文件缺失，`setup.bat` 会自动下载并校验 SHA256）
    `SHA256: D1043F52FC5913B7FEC9E075E9ABE7034626F7BEF56F0E77BC10DB91A6B259DF`
 2. 把 exe 放到本目录（`contrib/windows/`）
 3. 用浏览器扩展导出 cookie，保存为 `cookies.txt`（见下一节）
-4. 双击 **`首次使用.bat`**，按提示选择 1（EXE）并完成配置
-5. 双击 **`启动刷号.bat`** 开始
+4. 双击 **`setup.bat`**，按提示选择 1（EXE）并完成配置
+5. 双击 **`start-burst.bat`** 开始
 
 ### 方式 B：源码模式（进阶）
 
 适合想用自动抓取 cookie、或想改代码的用户：
 
 1. 安装 [uv](https://astral.sh/uv)
-2. 克隆本仓库，或在 `首次使用.bat` 中让它代跑：
+2. 克隆本仓库，或在 `setup.bat` 中让它代跑：
    `uv python install 3.12` + `uv sync --extra capture`
-3. 双击 **`首次使用.bat`**，选择 2（源码），填入源码目录
+3. 双击 **`setup.bat`**，选择 2（源码），填入源码目录
 4. 可用 `capture-cookie` 自动抓取 cookie（EXE 模式没有这个功能）
 
 ### 差异对比
@@ -72,18 +72,18 @@ macOS 用法与上游完全一致，见仓库根目录的 README。
 | 文件 | 作用 |
 |---|---|
 | `README.md` | 本文档：安装、cookie、用法、限速原理、FAQ |
-| `config.example.json` | 配置模板；`首次使用.bat` 会据此生成 `config.json` |
+| `config.example.json` | 配置模板；`setup.bat` 会据此生成 `config.json` |
 | `hme-common.ps1` | 共享函数：双模式运行、能力探测降级、读取本地地址 |
 | `setup.ps1` | 首次配置向导（选模式、验证 cookie、写入 config.json） |
-| `首次使用.bat` / `setup.bat` | 双击入口 → `setup.ps1` |
+| `setup.bat` | 双击入口 → `setup.ps1` |
 | `burst-gen.ps1` | 刷号驱动：组 / 间隔 / 连发三种模式、限速冷却、网络重试 |
-| `启动刷号.bat` / `start-burst.bat` | 双击入口 → `burst-gen.ps1` |
+| `start-burst.bat` | 双击入口 → `burst-gen.ps1` |
 | `stop-burst.ps1` | 停止刷号：整树终止进程，并显示当前批次（可 `-Resume`） |
-| `停止刷号.bat` / `stop-burst.bat` | 双击入口 → `stop-burst.ps1` |
+| `stop-burst.bat` | 双击入口 → `stop-burst.ps1` |
 | `sync.ps1` | 归档：云端入库 → 收件同步 → 删除对账 → 导出 CSV |
-| `归档.bat` / `archive.bat` | 双击入口 → `sync.ps1` |
+| `archive.bat` | 双击入口 → `sync.ps1` |
 | `retag.ps1` | 批量改标签/备注（Excel CSV 模板；留空=保持，`-`=清空） |
-| `改标签.bat` / `retag.bat` | 双击入口 → `retag.ps1` |
+| `retag.bat` | 双击入口 → `retag.ps1` |
 | `setup-inbox.ps1` | 配置 IMAP 收件（用于提取验证码） |
 | `setup-inbox.bat` | 双击入口 → `setup-inbox.ps1` |
 | `convert-cookies.ps1` | 把 Netscape 格式 cookie 转成 header / BASE64 |
@@ -122,7 +122,7 @@ macOS 用法与上游完全一致，见仓库根目录的 README。
 
 1. 在浏览器登录 `https://www.icloud.com.cn`（国区）或 `https://www.icloud.com`（国际区）
 2. 打开扩展，选择 **Export → Header string**
-3. 把导出的内容保存为**工具包目录下的 `cookies.txt`**（即 `contrib/windows/cookies.txt`，与 bat 同级——这是 `首次使用.bat` 默认查找的位置）；若想放在别处，在向导里填写路径，或修改 `config.json` 的 `cookie_file`
+3. 把导出的内容保存为**工具包目录下的 `cookies.txt`**（即 `contrib/windows/cookies.txt`，与 bat 同级——这是 `setup.bat` 默认查找的位置）；若想放在别处，在向导里填写路径，或修改 `config.json` 的 `cookie_file`
 
 ![使用 Get cookies.txt LOCALLY 导出 Header string](cookies.png)
 
@@ -163,7 +163,7 @@ powershell -ExecutionPolicy Bypass -File .\convert-cookies.ps1 -Source exported.
 
 ### 验证 cookie
 
-`首次使用.bat` 会自动执行 `whoami` 验证。也可手动：
+`setup.bat` 会自动执行 `whoami` 验证。也可手动：
 
 ```powershell
 .\hidemyemail-windows.exe whoami --cookie-file cookies.txt --region china
@@ -183,11 +183,11 @@ powershell -ExecutionPolicy Bypass -File .\convert-cookies.ps1 -Source exported.
 
 | 双击文件 | 作用 |
 |---|---|
-| `首次使用.bat` / `setup.bat` | 首次配置（选模式、验证 cookie、生成 config.json） |
-| `启动刷号.bat` / `start-burst.bat` | 按组模式批量生成地址（会提示本次数量） |
-| `停止刷号.bat` / `stop-burst.bat` | 停止正在运行的刷号进程（可 `-Resume` 续跑） |
-| `归档.bat` / `archive.bat` | 云端地址入库 + 收件同步 + 删除对账 + 导出 CSV |
-| `改标签.bat` / `retag.bat` | 批量修改标签/备注（Excel 模板，留空=保持，`-`=清空） |
+| `setup.bat` | 首次配置（选模式、验证 cookie、生成 config.json） |
+| `start-burst.bat` | 按组模式批量生成地址（会提示本次数量） |
+| `stop-burst.bat` | 停止正在运行的刷号进程（可 `-Resume` 续跑） |
+| `archive.bat` | 云端地址入库 + 收件同步 + 删除对账 + 导出 CSV |
+| `retag.bat` | 批量修改标签/备注（Excel 模板，留空=保持，`-`=清空） |
 | `setup-inbox.bat` | 配置 IMAP 收件（用于验证码提取） |
 
 日志：`logs\<日期>-burst\burst.log`、`logs\<日期>\sync.log`
@@ -234,7 +234,7 @@ powershell -ExecutionPolicy Bypass -File .\convert-cookies.ps1 -Source exported.
 
 ## 配置说明（config.json）
 
-首次运行 `首次使用.bat` 会自动生成。相对路径按脚本所在目录解析。
+首次运行 `setup.bat` 会自动生成。相对路径按脚本所在目录解析。
 
 | 键 | 默认 | 说明 |
 |---|---|---|
@@ -266,7 +266,7 @@ A：不能。预编译 exe 明确禁用了自动抓取，请用浏览器扩展�
 **Q：生成到一半提示到达上限，正常吗？**
 A：正常。这是苹果的滚动窗口限制（约 5 个/小时）。脚本会自动冷却 60 分钟后继续。
 
-**Q：`改标签.bat` 会消耗创建配额吗？**
+**Q：`retag.bat` 会消耗创建配额吗？**
 A：不会。它只修改标签/备注元数据，不影响转发。
 
 **Q：归档时"删除对账"是什么？**

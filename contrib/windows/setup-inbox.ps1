@@ -21,6 +21,12 @@ $OutputEncoding = [System.Text.Encoding]::UTF8
 $env:PYTHONIOENCODING = "utf-8"
 $env:PYTHONUTF8 = "1"
 
+if (-not (Test-Path $Config)) {
+  Write-Host "[ERR] 未找到 config.json" -ForegroundColor Red
+  Write-Host "      请先双击 setup.bat 完成首次配置（会生成 config.json），或指定 -Config <路径>"
+  exit 1
+}
+
 $cfg = Get-Content $Config -Raw | ConvertFrom-Json
 . (Join-Path $PSScriptRoot "hme-common.ps1")
 Initialize-HmePaths

@@ -37,9 +37,9 @@
 
 本 fork 在 [`contrib/windows/`](contrib/windows/README.md) 提供一套 Windows 工具包：在 CLI 之上封装了组模式刷号与自动冷却、归档对账、批量改标签、IMAP 收件配置，支持 EXE 模式（无需 Python）和源码模式。
 
-1. 获取 `hidemyemail-windows.exe`：双击 `首次使用.bat` 会自动下载并校验 SHA256（也可从上方链接下载后放进 `contrib/windows/`）。
+1. 获取 `hidemyemail-windows.exe`：双击 `setup.bat` 会自动下载并校验 SHA256（也可从上方链接下载后放进 `contrib/windows/`）。
 2. 用 **Get cookies.txt LOCALLY** 导出 iCloud cookie（安装包在 [`contrib/windows/extensions/`](contrib/windows/extensions/)），保存为 `contrib/windows/cookies.txt`。
-3. 双击 `首次使用.bat` 完成配置，之后双击 `启动刷号.bat` 开始。
+3. 双击 `setup.bat` 完成配置，之后双击 `start-burst.bat` 开始。
 
 > 本节以下均为上游项目文档（macOS、Android、命令行）。
 
@@ -111,7 +111,7 @@
 
 从[上游最新发行版](https://github.com/rtunazzz/hidemyemail-generator/releases/latest)下载独立二进制文件，无需安装 Python 或 `uv`。
 
-- **Windows：** 从本 fork 的 [v2.1.0-win Release](../../releases/tag/v2.1.0-win) 下载 `hidemyemail-windows.exe`（`首次使用.bat` 也可自动下载），放到 `contrib/windows/`。双击打开交互式菜单，或在终端中带参数运行以使用命令行（`hidemyemail-windows.exe --help`）。
+- **Windows：** 从本 fork 的 [v2.1.0-win Release](../../releases/tag/v2.1.0-win) 下载 `hidemyemail-windows.exe`（`setup.bat` 也可自动下载），放到 `contrib/windows/`。双击打开交互式菜单，或在终端中带参数运行以使用命令行（`hidemyemail-windows.exe --help`）。
 - **macOS 应用：** M 系列 Mac 下载
   [Apple 芯片版 DMG](https://github.com/rtunazzz/hidemyemail-generator/releases/latest/download/HideMyEmail-Generator-macOS-Apple-Silicon.dmg)，
   Intel Mac 下载
@@ -229,9 +229,9 @@ HIDEMYEMAIL_REGION=china
 
 ### 快速开始（EXE 模式）
 
-1. 下载 `hidemyemail-windows.exe`（本 fork 的 [v2.1.0-win Release](../../releases/tag/v2.1.0-win)，或让 `首次使用.bat` 自动下载），放到 `contrib/windows/`
+1. 下载 `hidemyemail-windows.exe`（本 fork 的 [v2.1.0-win Release](../../releases/tag/v2.1.0-win)，或让 `setup.bat` 自动下载），放到 `contrib/windows/`
 2. 用 **Get cookies.txt LOCALLY** 导出 cookie（安装与用法见下）；保存为 **`contrib/windows/cookies.txt`**（与 bat 同级，向导默认查找此处），必须包含 `X-APPLE-WEBAUTH-TOKEN`、`X-APPLE-WEBAUTH-USER`、`X-APPLE-DS-WEB-SESSION-TOKEN`
-3. 双击 `首次使用.bat`（`setup.bat`）完成配置，之后双击 `启动刷号.bat`（`start-burst.bat`）开始
+3. 双击 `setup.bat`完成配置，之后双击 `start-burst.bat`开始
 
 ### 安装 cookie 扩展
 
@@ -267,10 +267,10 @@ CLI 也支持：单行 cookie header、`HIDEMYEMAIL_COOKIE_BASE64=...`、Cookie-
 
 | 双击文件 | 作用 |
 |---|---|
-| `启动刷号.bat` / `start-burst.bat` | 按组模式生成地址 |
-| `停止刷号.bat` / `stop-burst.bat` | 停止正在运行的刷号（`-Resume` 可续跑） |
-| `归档.bat` / `archive.bat` | 云端入库、收件同步、删除对账、导出 CSV |
-| `改标签.bat` / `retag.bat` | 用 Excel 模板批量改标签/备注 |
+| `start-burst.bat` | 按组模式生成地址 |
+| `stop-burst.bat` | 停止正在运行的刷号（`-Resume` 可续跑） |
+| `archive.bat` | 云端入库、收件同步、删除对账、导出 CSV |
+| `retag.bat` | 用 Excel 模板批量改标签/备注 |
 | `setup-inbox.bat` | 配置 IMAP 收件（验证码提取） |
 
 每个文件的具体作用见 [`contrib/windows/README.md`](contrib/windows/README.md) 的「工具包文件说明」。
