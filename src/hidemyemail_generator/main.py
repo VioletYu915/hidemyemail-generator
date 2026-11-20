@@ -1974,10 +1974,26 @@ async def _capture_cookie(cookie_file: str, region: str = DEFAULT_REGION) -> boo
                 return
             if "rootDomain=www" not in request.url:
                 return
+            if captured.done():
+                return
 
-            cookie = request.headers.get("cookie", "")
-            if cookie and not captured.done():
-                captured.set_result((request.url, cookie))
+            async def capture_from_context() -> None:
+                # Playwright does not expose the Cookie request header
+                # (request.headers/all_headers both omit it), so rebuild the
+                # header from the browser context for the triggering URL.
+                try:
+                    cookies = await context.cookies(request.url)
+                except Exception:
+                    return
+                if not cookies or captured.done():
+                    return
+                header = "; ".join(
+                    f"{item['name']}={item['value']}" for item in cookies
+                )
+                if not captured.done():
+                    captured.set_result((request.url, header))
+
+            asyncio.ensure_future(capture_from_context())
 
         context.on("request", on_request)
 
