@@ -244,7 +244,7 @@ HIDEMYEMAIL_REGION=china
 2. 打开扩展，选择 **Export → Header string**
 3. 保存为**工具包目录下的 `cookies.txt`**（即 `contrib/windows/cookies.txt`，与 bat 同级，单行文本）；若想放别处，在向导里填写路径或改 `config.json` 的 `cookie_file`
 
-![使用 Get cookies.txt LOCALLY 导出 Header string](docs/cookies.png)
+![使用 Get cookies.txt LOCALLY 导出 Header string](contrib/windows/cookies.png)
 
 CLI 也支持：单行 cookie header、`HIDEMYEMAIL_COOKIE_BASE64=...`、Cookie-Editor 的 JSON 导出、Copy as cURL；Netscape 格式可用 `convert-cookies.ps1` 转换。
 

@@ -315,7 +315,7 @@ Official source: <https://github.com/kairi003/Get-cookies.txt-LOCALLY> (also ava
 2. Open the extension and choose **Export → Header string**.
 3. Save the output as `cookies.txt` in the toolkit folder — i.e. `contrib/windows/cookies.txt`, next to the .bat files (single line). To keep it elsewhere, enter the path in the setup wizard or set `cookie_file` in `config.json`.
 
-![Exporting cookies with Get cookies.txt LOCALLY](docs/cookies.png)
+![Exporting cookies with Get cookies.txt LOCALLY](contrib/windows/cookies.png)
 
 The CLI also accepts a raw one-line cookie header, `HIDEMYEMAIL_COOKIE_BASE64=...`, a Cookie-Editor JSON export, or a copied cURL command. Netscape-format exports can be converted with `convert-cookies.ps1`.
 
