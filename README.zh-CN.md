@@ -37,14 +37,6 @@
 
 本 fork 在 [`contrib/windows/`](contrib/windows/README.md) 提供一套 Windows 工具包：在 CLI 之上封装了组模式刷号与自动冷却、归档对账、批量改标签、IMAP 收件配置，支持 EXE 模式（无需 Python）和源码模式。
 
-1. 从上方链接下载 `hidemyemail-windows-toolkit-v2.1.0.zip`，解压到任意目录——exe、全部启动脚本和两个 cookie 扩展安装包都在里面。
-2. 用 **Get cookies.txt LOCALLY** 导出 iCloud cookie（压缩包内 `extensions/` 有安装包），保存为解压目录下的 `cookies.txt`。
-3. 双击 `setup.bat`（首次配置）完成配置，之后双击 `start-burst.bat`（启动刷号）开始。
-
-## Windows 工具包详解
-
-本 fork 在 [`contrib/windows/`](contrib/windows/README.md) 提供 Windows 工具包：基于 CLI 增加组模式刷号、归档、批量改标签、IMAP 收件配置，支持两种运行模式：
-
 | | EXE 模式（推荐） | 源码模式 |
 |---|---|---|
 | 前置依赖 | 无（单个 15MB exe） | uv + Python 3.12 + 依赖 |
@@ -134,7 +126,6 @@ CLI 也支持：单行 cookie header、`HIDEMYEMAIL_COOKIE_BASE64=...`、Cookie-
 ## 目录
 
 - [Windows 工具包（fork）](#windows-工具包fork)
-- [Windows 工具包详解](#windows-工具包详解)
 - [应用预览](#应用预览)
 - [功能亮点](#功能亮点)
 - [快速开始](#快速开始)

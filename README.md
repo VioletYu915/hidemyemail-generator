@@ -35,15 +35,7 @@
   <a href="contrib/windows/README.md"><strong>Toolkit documentation</strong></a>
 </p>
 
-This fork ships a Windows toolkit in [`contrib/windows/`](contrib/windows/README.md). It wraps the CLI with group-paced generation and automatic cooldown, archiving with reconciliation, batch retagging, and IMAP inbox setup — in EXE mode (no Python) or source mode.
-
-1. Download `hidemyemail-windows-toolkit-v2.1.0.zip` from the release above and unzip it anywhere — the EXE, all launchers and both cookie extensions are already inside.
-2. Export iCloud cookies with **Get cookies.txt LOCALLY** (bundled in `extensions/` inside the zip) and save them as `cookies.txt` in the unzipped folder.
-3. Double-click `setup.bat` (first-time setup) once to configure, then `start-burst.bat` (start generating) to start.
-
-## Windows Toolkit details
-
-This fork adds a Windows toolkit in [`contrib/windows/`](contrib/windows/README.md). It builds on the CLI with group-paced generation, archiving, batch retagging, and IMAP inbox setup, in one of two modes:
+This fork ships a Windows toolkit in [`contrib/windows/`](contrib/windows/README.md): group-paced generation with automatic cooldown, archiving with reconciliation, batch retagging, and IMAP inbox setup — in EXE mode (no Python) or source mode.
 
 | | EXE mode (recommended) | Source mode |
 |---|---|---|
@@ -159,7 +151,6 @@ Alongside the basics it provides:
 ## Contents
 
 - [Windows Toolkit (fork)](#windows-toolkit-fork)
-- [Windows Toolkit details](#windows-toolkit-details)
 - [App Preview](#app-preview)
 - [Highlights](#highlights)
 - [Quick Start](#quick-start)
