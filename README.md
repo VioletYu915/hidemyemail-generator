@@ -10,8 +10,6 @@
   Includes native macOS sign-in, an Android client, a Windows launcher, iCloud China support, and a local inbox.
 </p>
 
-> **Fork addition:** a Windows toolkit (EXE/source dual mode, group-paced generation, archiving, batch retagging) lives in [`contrib/windows/`](contrib/windows/README.md).
-
 <p align="center">
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-2ea44f"></a>
   <img alt="Python 3.12+" src="https://img.shields.io/badge/python-3.12%2B-3776ab?logo=python&logoColor=white">
@@ -28,6 +26,22 @@
 </p>
 
 > You need an active iCloud+ subscription to generate Hide My Email addresses.
+
+## Windows Toolkit (fork)
+
+<p align="center">
+  <a href="https://github.com/VioletYu915/hidemyemail-generator/releases/tag/v2.1.0-win"><strong>Download for Windows (.exe)</strong></a>
+  ·
+  <a href="contrib/windows/README.md"><strong>Toolkit documentation</strong></a>
+</p>
+
+This fork ships a Windows toolkit in [`contrib/windows/`](contrib/windows/README.md). It wraps the CLI with group-paced generation and automatic cooldown, archiving with reconciliation, batch retagging, and IMAP inbox setup — in EXE mode (no Python) or source mode.
+
+1. Get `hidemyemail-windows.exe` — double-click `首次使用.bat` and it downloads and SHA256-verifies the binary for you (or download it above and drop it into `contrib/windows/`).
+2. Export iCloud cookies with **Get cookies.txt LOCALLY** (bundled in [`contrib/windows/extensions/`](contrib/windows/extensions/)) and save them as `contrib/windows/cookies.txt`.
+3. Double-click `首次使用.bat` once to configure, then `启动刷号.bat` to start.
+
+> Everything below this section is the upstream project documentation for macOS, Android and the CLI.
 
 ## App Preview
 
@@ -79,6 +93,7 @@ Alongside the basics it provides:
 
 ## Contents
 
+- [Windows Toolkit (fork)](#windows-toolkit-fork)
 - [App Preview](#app-preview)
 - [Highlights](#highlights)
 - [Quick Start](#quick-start)
@@ -272,7 +287,7 @@ environment variable before launching:
 HIDEMYEMAIL_REGION=china
 ```
 
-## Windows Toolkit (fork)
+## Windows Toolkit details
 
 This fork adds a Windows toolkit in [`contrib/windows/`](contrib/windows/README.md). It builds on the CLI with group-paced generation, archiving, batch retagging, and IMAP inbox setup, in one of two modes:
 

@@ -10,8 +10,6 @@
   包含 macOS 原生登录、Android 客户端、Windows 启动器、iCloud 中国区支持和本地收件台。
 </p>
 
-> **本 fork 新增：** Windows 工具包（EXE/源码双模式、组模式刷号、归档、批量改标签）见 [`contrib/windows/`](contrib/windows/README.md)。
-
 <p align="center">
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-2ea44f"></a>
   <img alt="Python 3.12+" src="https://img.shields.io/badge/python-3.12%2B-3776ab?logo=python&logoColor=white">
@@ -28,6 +26,22 @@
 </p>
 
 > 需要有效的 iCloud+ 订阅，才能生成「隐藏邮件地址」。
+
+## Windows 工具包（fork）
+
+<p align="center">
+  <a href="https://github.com/VioletYu915/hidemyemail-generator/releases/tag/v2.1.0-win"><strong>下载 Windows 版（.exe）</strong></a>
+  ·
+  <a href="contrib/windows/README.md"><strong>工具包文档</strong></a>
+</p>
+
+本 fork 在 [`contrib/windows/`](contrib/windows/README.md) 提供一套 Windows 工具包：在 CLI 之上封装了组模式刷号与自动冷却、归档对账、批量改标签、IMAP 收件配置，支持 EXE 模式（无需 Python）和源码模式。
+
+1. 获取 `hidemyemail-windows.exe`：双击 `首次使用.bat` 会自动下载并校验 SHA256（也可从上方链接下载后放进 `contrib/windows/`）。
+2. 用 **Get cookies.txt LOCALLY** 导出 iCloud cookie（安装包在 [`contrib/windows/extensions/`](contrib/windows/extensions/)），保存为 `contrib/windows/cookies.txt`。
+3. 双击 `首次使用.bat` 完成配置，之后双击 `启动刷号.bat` 开始。
+
+> 本节以下均为上游项目文档（macOS、Android、命令行）。
 
 ## 应用预览
 
@@ -54,6 +68,7 @@
 
 ## 目录
 
+- [Windows 工具包（fork）](#windows-工具包fork)
 - [应用预览](#应用预览)
 - [功能亮点](#功能亮点)
 - [快速开始](#快速开始)
@@ -201,7 +216,7 @@ Cookie 管理菜单：
 HIDEMYEMAIL_REGION=china
 ```
 
-## Windows 工具包（本 fork 新增）
+## Windows 工具包详解
 
 本 fork 在 [`contrib/windows/`](contrib/windows/README.md) 提供 Windows 工具包：基于 CLI 增加组模式刷号、归档、批量改标签、IMAP 收件配置，支持两种运行模式：
 
